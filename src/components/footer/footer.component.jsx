@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <div className="logo">
+      <div className="copy">
         Copy <a href="https://github.com/shljshlj">shljshlj</a>
       </div>
     </footer>

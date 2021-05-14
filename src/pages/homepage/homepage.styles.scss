@@ -1,0 +1,13 @@
+.main__section{
+  margin-bottom: 60px;
+
+  &-title {
+    margin: 1em 0;
+    font-size: 2em;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #000;
+    border-bottom: 1px solid #414040;
+  }
+}

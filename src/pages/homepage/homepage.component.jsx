@@ -1,26 +1,18 @@
-import { useState, useEffect } from 'react';
+import ContentWrapper from '../../components/layout/contentWrapper/contentWrapper.component';
+import ShowPreviewList from '../../components/showPreviewList/showPreviewList.component';
 
-import { showService } from '../../services/showService';
+import './homepage.styles.scss';
 
 function HomePage() {
-  const [topRatedShows, setTopRatedShows] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const getTopShows = async () => {
-      setLoading(true);
-      const fetchedTopShows = await showService.fetchPopular();
-      const topShows = await showService.createShowPreviews(fetchedTopShows);
-      console.log(fetchedTopShows);
-      console.log(topShows);
-      setLoading(false);
-    }
-
-    getTopShows();
-  }, [])
-
   return (
-    <h1>Top Trending Shows</h1>
+    <ContentWrapper>
+      <section className="main__section">
+        <header className="main__section-header">
+          <h1 className="main__section-title">Most Popular Shows</h1>
+        </header>
+        <ShowPreviewList />
+      </section>
+    </ContentWrapper>
   );
 }
 

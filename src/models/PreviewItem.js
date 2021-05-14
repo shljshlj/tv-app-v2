@@ -44,6 +44,6 @@ export default class PreviewItem {
 
   getGenresFormat() {
     const genreNames = this.getGenreNames();
-    return genreNames.join(' &bull; ');
+    return genreNames.join(` ${String.fromCharCode(8226)} `);
   }
 };

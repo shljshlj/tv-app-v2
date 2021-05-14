@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poiret+One&display=swap');
+
+$font-primary: 'Source Sans Pro', sans-serif;
+$font-secondary: 'Montserrat', sans-serif;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  // --bg-dark: #345987;
+  --bg-dark: rgb(2, 37, 65);
+  --light-grey: #e3e3e3;
+  --primary-text: #050505;
+  --secondary-text: #f1f1f1;
+  --primary-icon: #7e7e7e;
+  --border-divider: #d7d7d7;
+  --card-border-radius: 6px;
+  --card-border-color: #e3e3e3;
+  --card-box-shadow-color: rgba(0, 0, 0, 0.1);
+  --gold-rating: #e4bb24;
+}
+
+body {
+  font-family: $font-primary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $font-secondary;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.main_wrapper {
+  padding: 30px 40px;
+}
+
+.card {
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: 0 2px 8px var(--card-box-shadow-color);
+  overflow: hidden;
+
+  & img {
+    display: block;
+  }
+}
+
+.site-footer {
+  background-color: var(--bg-dark);
+  padding: 20px 0;
+  color: var(--secondary-text);
+}
+
+/* -----
+SVG Icons - svgicons.sparkk.fr SET #1
+----- */
+
+// .svg-icon {
+//   width: 1em;
+//   height: 1em;
+// }
+
+// .svg-icon path,
+// .svg-icon polygon,
+// .svg-icon rect {
+//   fill: var(--primary-icon);
+// }
+
+// .svg-icon circle {
+//   stroke: var(--primary-icon);
+//   stroke-width: 1;
+// }
+
+/* -----
+SVG Icons - END
+----- */
+
+/* api-provider-logo */
+
+.api-provider {
+  display: flex;
+  flex-direction: column;
+}
+
+.api-provider-logo img {
+  display: block;
+  width: 100px;
+}
+
+.text-overview {
+  font-size: 1em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+}
+
+.link {
+  &--more {
+    display: block;
+    margin-top: 4px;
+    color: var(--bg-dark);
+    font-weight: 600;
+
+    &::after {
+      content: ' \00BB';
+      color: #000;
+      font-weight: 400;
+    }
+  }
+}
+
+/* Icons */
+
+.icon {
+  &--hidden {
+    display: none !important;
+  }
+}
