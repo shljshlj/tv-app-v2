@@ -10,9 +10,7 @@ function PageHeader({ show }) {
   const posterUrl = show.getPosterUrl();
   const backdropUrl = show.getBackdropUrl();
   const dateFormat = show.getDateFormat();
-
   const { numOfCreators, creatorsList } = creators;
-  const dateSpan = `<span>TV Series ${dateFormat}</span>`;
 
   const sectionStyle = {
     backgroundImage: `url(${backdropUrl})`
@@ -33,10 +31,10 @@ function PageHeader({ show }) {
                 <h1 className="title">{title}</h1>
                 <div className="title__subtext">
                   <span>{runtime}</span>
-                  <span className="title__divider">&vert;</span>
+                  <span className="title__divider">{String.fromCharCode(124)}</span>
                   <span>{genres}</span>
-                  <span className="title__divider">&vert;</span>
-                  {dateSpan}
+                  <span className="title__divider">{String.fromCharCode(124)}</span>
+                  <span>TV Series {dateFormat}</span>
                 </div>
               </div>
               <div className="rating_wrapper">

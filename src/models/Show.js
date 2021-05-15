@@ -76,10 +76,10 @@ export default class Show {
 
       if (this.status === 'Ended' && this.lastAirDate) {
         const lastAirYear = new Date(this.lastAirDate).getFullYear();
-        return `(${releaseYear}&ndash;${lastAirYear})`;
+        return `(${releaseYear}${String.fromCharCode(8211)}${lastAirYear})`;
       }
 
-      return `(${releaseYear}&ndash;)`;
+      return `(${releaseYear}${String.fromCharCode(8211)})`;
     }
   }
 

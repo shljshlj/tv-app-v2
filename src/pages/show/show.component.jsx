@@ -30,8 +30,10 @@ function ShowPage() {
     <>
       {
         show ?
-          <PageHeader show={show} /> :
-          <div>No such show!</div>
+          (<>
+            <PageHeader show={show} />
+          </>) :
+          <div>No such show</div>
       }
     </>
   );

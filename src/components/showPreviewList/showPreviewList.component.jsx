@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { showService } from '../../services/showService';
 
-import ShowPreviewItem from '../showPreviewItem/showPreviewItem.componen';
+import ShowPreviewItem from '../showPreviewItem/showPreviewItem.component';
 
 import './showPreviewList.styles.scss';
 

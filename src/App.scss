@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
 $font-primary: 'Source Sans Pro', sans-serif;
@@ -37,7 +37,7 @@ h1,
 h2,
 h3 {
   font-family: $font-secondary;
-  font-weight: 400;
+  // font-weight: 400;
 }
 
 ul,
