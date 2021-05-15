@@ -7,7 +7,6 @@ function ShowPreviewItem({ show }) {
   const posterUrl = show.getPosterUrl();
   const releaseYear = show.getReleaseYear();
   const genres = show.getGenresFormat();
-  console.log(show);
 
   return (
     <li className="grid__card card">

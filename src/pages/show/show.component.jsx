@@ -8,6 +8,7 @@ import ContentWrapper from '../../components/layout/contentWrapper/contentWrappe
 import CastPanel from '../../components/castPanel/castPanel.component';
 import SeasonPanel from '../../components/seasonsPanel/seasonsPanel.component';
 import VideoPanel from '../../components/videoPanel/videoPanel.component';
+import RecommendedPanel from '../../components/recommendedPanel/recommendedPanel.component';
 
 function ShowPage() {
   const { showId } = useParams();
@@ -30,7 +31,6 @@ function ShowPage() {
     return <div>Loading...</div>;
   }
 
-  console.log(show);
   return (
     <>
       {
@@ -42,6 +42,7 @@ function ShowPage() {
                 <CastPanel cast={show.cast} />
                 <SeasonPanel title={show.title} seasons={show.seasons} />
                 <VideoPanel videos={show.videos} />
+                <RecommendedPanel recommendedShows={show.recommendedShows} />
               </SingleShowGrid>
             </ContentWrapper>
           </>) :
