@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { showService } from '../../services/showService';
 
 import PageHeader from '../../components/pageHeader/pageHeader.component';
+import SingleShowGrid from '../../components/layout/singleShowGrid/singleShowGrid.component';
+import ContentWrapper from '../../components/layout/contentWrapper/contentWrapper.component';
+import CastPanel from '../../components/castPanel/castPanel.component';
 
 function ShowPage() {
   const { showId } = useParams();
@@ -32,6 +35,11 @@ function ShowPage() {
         show ?
           (<>
             <PageHeader show={show} />
+            <ContentWrapper>
+              <SingleShowGrid>
+                <CastPanel cast={show.cast} />
+              </SingleShowGrid>
+            </ContentWrapper>
           </>) :
           <div>No such show</div>
       }

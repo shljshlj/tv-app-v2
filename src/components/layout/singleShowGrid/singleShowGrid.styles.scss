@@ -1,0 +1,56 @@
+.single-page {
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    grid-column-gap: 40px;
+    grid-template-areas:
+      'cast more-info'
+      'season more-info'
+      'video more-info'
+      'recommended more-info';
+  }
+}
+
+.main_wrapper {
+  padding: 30px 0;
+}
+
+/* Panels */
+
+.panel {
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border-divider);
+
+  &:first-of-type {
+    padding-top: 0px;
+  }
+
+  &:last-of-type {
+    padding-bottom: 0px;
+    border-bottom: none;
+  }
+
+  &__heading {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+
+    h3 {
+      font-weight: 400;
+      font-size: 1.5em;
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+    }
+
+    h4 {
+      font-weight: 400;
+      font-size: 1em;
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+
+      // &::before,
+      // &::after {
+      //   content: '\2014';
+      // }
+    }
+  }
+}

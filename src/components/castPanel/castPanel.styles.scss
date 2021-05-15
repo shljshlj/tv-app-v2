@@ -1,0 +1,110 @@
+/* START of MIXIN */
+
+@mixin fader-vertical {
+  position: relative;
+  
+  &.should_fade::after {
+    content: '';
+    height: 100%;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    will-change: opacity;
+    pointer-events: none;
+  }
+
+  &.should_fade.is_fading::after {
+    transition: opacity 300ms linear;
+    opacity: 1;
+  }
+
+  &.should_fade.is_hidden::after {
+    transition: opacity 300ms linear;
+    opacity: 0;
+  }
+}
+
+/* END of MIXIN */
+
+.cast {
+  &__panel {
+    grid-area: cast;
+  }
+
+  &__heading {
+    &-label {
+      font-size: 0.9em;
+    }
+  }
+
+  &-scroller {
+    @include fader-vertical;
+  }
+
+  &__list {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__card {
+    width: 140px;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    overflow: hidden;
+    margin: 0px 10px 10px 0px;
+
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &-link {
+      width: 100%;
+      height: 200px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+      }
+
+      .profile-placeholder {
+        width: 100%;
+        height: 100%;
+        background-size: 150px;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-color: var(--light-grey);
+      }
+    }
+
+    & span {
+      padding: 0 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & a + span {
+      padding-top: 10px;
+    }
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 1em;
+  }
+
+  &__character {
+    font-size: 0.9em;
+  }
+
+  &__episode_count {
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
