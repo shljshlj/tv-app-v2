@@ -25,12 +25,12 @@ function CastCard({ person, profileImgUrl, genderStr }) {
   const { name, character, episodeCount } = person;
 
   return (
-    <li class="cast__card card">
-      <div class="cast__card-link">
+    <li className="cast__card card">
+      <div className="cast__card-link">
         <ProfileImg profileImgUrl={profileImgUrl} name={name} genderStr={genderStr} />
       </div>
-      <span class="cast__name">{name}</span>
-      <span class="cast__character">{character}</span>
+      <span className="cast__name">{name}</span>
+      <span className="cast__character">{character}</span>
       <EpisodeSpan episodeCount={episodeCount} />
     </li>
   );

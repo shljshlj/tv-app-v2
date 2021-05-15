@@ -1,0 +1,27 @@
+.season {
+  &__panel {
+    grid-area: season;
+  }
+  
+  &__card {
+    display: flex;
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__content {
+    padding: 20px;
+  }
+
+  &_subheading {
+    font-size: 0.9em;
+  }
+
+  &__overview {
+    font-size: 0.9em;
+    padding-top: 20px;
+  }
+}

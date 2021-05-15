@@ -6,6 +6,7 @@ import PageHeader from '../../components/pageHeader/pageHeader.component';
 import SingleShowGrid from '../../components/layout/singleShowGrid/singleShowGrid.component';
 import ContentWrapper from '../../components/layout/contentWrapper/contentWrapper.component';
 import CastPanel from '../../components/castPanel/castPanel.component';
+import SeasonPanel from '../../components/seasonsPanel/seasonsPanel.component';
 
 function ShowPage() {
   const { showId } = useParams();
@@ -38,6 +39,7 @@ function ShowPage() {
             <ContentWrapper>
               <SingleShowGrid>
                 <CastPanel cast={show.cast} />
+                <SeasonPanel title={show.title} seasons={show.seasons} />
               </SingleShowGrid>
             </ContentWrapper>
           </>) :
