@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASE_API_ENDPOINT } from './constants';
 import { TV_ENDPOINT } from './constants';
+import { PERSON_ENDPOINT } from './constants';
 
 export default axios.create({
   baseURL: BASE_API_ENDPOINT,
@@ -11,6 +12,13 @@ export default axios.create({
 
 export const tvApi = axios.create({
   baseURL: TV_ENDPOINT,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+export const personApi = axios.create({
+  baseURL: PERSON_ENDPOINT,
   headers: {
     'Content-Type': 'application/json'
   }

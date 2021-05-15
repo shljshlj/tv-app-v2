@@ -12,7 +12,7 @@ function ShowPreviewList() {
   useEffect(() => {
     const getPopularShows = async () => {
       setLoading(true);
-      const fetchedPopularShows = await showService.fetchPopular(50,);
+      const fetchedPopularShows = await showService.fetchPopular(10);
       const popularShows = await showService.createShowPreviews(fetchedPopularShows);
 
       setPopularShows(popularShows)

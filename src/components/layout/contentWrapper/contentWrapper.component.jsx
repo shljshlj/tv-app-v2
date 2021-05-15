@@ -2,7 +2,7 @@ import './contentWrapper.styles.scss';
 
 export default function ContentWrapper(props) {
   return (
-    <div class="page-content">
+    <div className="content-wrapper">
       {props.children}
     </div>
   );
