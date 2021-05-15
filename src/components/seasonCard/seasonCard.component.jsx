@@ -15,13 +15,13 @@ function SeasonCard({ season, posterUrl, releaseYear, showTitle }) {
   const seasonTitle = `${showTitle}: ${title}`;
 
   return (
-    <li class="season__card card">
-      <div class="season__card-poster">
+    <li className="season__card card">
+      <div className="season__card-poster">
         <img src={posterUrl} alt="" />
       </div>
-      <div class="season__content">
-        <h2 class="season__title">{seasonTitle}</h2>
-        <h4 class="season__subheading">
+      <div className="season__content">
+        <h2 className="season__title">{seasonTitle}</h2>
+        <h4 className="season__subheading">
           <span>{releaseYear} {String.fromCharCode(124)} {episodeCount}{episodeCount > 1 ? ' Episodes' : ' Episode'}</span>
         </h4>
         <SeasonOverview overview={overview} />

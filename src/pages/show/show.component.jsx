@@ -7,6 +7,7 @@ import SingleShowGrid from '../../components/layout/singleShowGrid/singleShowGri
 import ContentWrapper from '../../components/layout/contentWrapper/contentWrapper.component';
 import CastPanel from '../../components/castPanel/castPanel.component';
 import SeasonPanel from '../../components/seasonsPanel/seasonsPanel.component';
+import VideoPanel from '../../components/videoPanel/videoPanel.component';
 
 function ShowPage() {
   const { showId } = useParams();
@@ -40,6 +41,7 @@ function ShowPage() {
               <SingleShowGrid>
                 <CastPanel cast={show.cast} />
                 <SeasonPanel title={show.title} seasons={show.seasons} />
+                <VideoPanel videos={show.videos} />
               </SingleShowGrid>
             </ContentWrapper>
           </>) :

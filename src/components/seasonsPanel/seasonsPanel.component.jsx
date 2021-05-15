@@ -9,26 +9,24 @@ function SeasonPanel({ title, seasons }) {
   const seasonsList = seasons.length > 8 ? seasonsInOrder.slice(0, 8) : seasonsInOrder;
 
   return (
-    <section class="panel season__panel">
-      <div class="panel__heading season__heading">
+    <section className="panel season__panel">
+      <div className="panel__heading season__heading">
         <h3>Seasons</h3>
       </div>
-      <div class="season_wrapper">
-        <ol class="season__list">
+      <div className="season_wrapper">
+        <ol className="season__list">
           {
             seasonsList.map((season) => {
-              console.log(season)
-
               const posterUrl = season.getPosterUrl();
               const releaseYear = season.getReleaseYear();
 
-              return <SeasonCard season={season} posterUrl={posterUrl} releaseYear={releaseYear} showTitle={title} />
+              return <SeasonCard key={season.id} season={season} posterUrl={posterUrl} releaseYear={releaseYear} showTitle={title} />
             })
           }
         </ol>
         {
           seasons.length > 8 ?
-            <Link class="link--more">Show More Seasons</Link> :
+            <Link className="link--more" to="#">Show More Seasons</Link> :
             null
         }
       </div>

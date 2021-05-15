@@ -2,6 +2,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
+/* START of MIXIN */
+
+@mixin fader-vertical {
+  position: relative;
+  
+  &.should_fade::after {
+    content: '';
+    height: 100%;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    will-change: opacity;
+    pointer-events: none;
+  }
+
+  &.should_fade.is_fading::after {
+    transition: opacity 300ms linear;
+    opacity: 1;
+  }
+
+  &.should_fade.is_hidden::after {
+    transition: opacity 300ms linear;
+    opacity: 0;
+  }
+}
+
+/* END of MIXIN */
+
 $font-primary: 'Source Sans Pro', sans-serif;
 $font-secondary: 'Montserrat', sans-serif;
 

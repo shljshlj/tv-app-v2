@@ -188,8 +188,6 @@ class ShowService {
       created_by,
     } = details;
 
-    console.log(videos.results);
-
     const creators = created_by.map(creator => creator.name);
     const seasonPreviews = seasons.map(season => new PreviewSeason(season));
     const videoList = videos.results.length !== 0 ? videos.results.map(video => new Video(video)) : null;
