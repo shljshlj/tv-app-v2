@@ -9,6 +9,7 @@ import CastPanel from '../../components/castPanel/castPanel.component';
 import SeasonPanel from '../../components/seasonsPanel/seasonsPanel.component';
 import VideoPanel from '../../components/videoPanel/videoPanel.component';
 import RecommendedPanel from '../../components/recommendedPanel/recommendedPanel.component';
+import MoreInfoPanel from '../../components/moreInfoPanel/moreInfoPanel.component';
 
 function ShowPage() {
   const { showId } = useParams();
@@ -43,6 +44,7 @@ function ShowPage() {
                 <SeasonPanel title={show.title} seasons={show.seasons} />
                 <VideoPanel videos={show.videos} />
                 <RecommendedPanel recommendedShows={show.recommendedShows} />
+                <MoreInfoPanel show={show} />
               </SingleShowGrid>
             </ContentWrapper>
           </>) :
