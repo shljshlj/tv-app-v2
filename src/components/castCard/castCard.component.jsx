@@ -1,3 +1,8 @@
+import femalePlaceholderSvg from '../../assets/female_placeholder_tmdb.svg';
+import malePlaceholderSvg from '../../assets/male_placeholder_tmdb.svg';
+
+import './castCard.styles.scss';
+
 const EpisodeSpan = ({ episodeCount }) => {
   if (episodeCount) {
     return (
@@ -16,8 +21,10 @@ const ProfileImg = ({ profileImgUrl, name, genderStr }) => {
     );
   }
 
+  const placeholderStr = genderStr === 'female' ? femalePlaceholderSvg : malePlaceholderSvg;
+
   return (
-    <div className="profile-placeholder" style={{ backgroundImage: `url(../../assets/${genderStr}_placeholder_tmdb.svg)` }} />
+    <div className="profile-placeholder" style={{ backgroundImage: `url(${placeholderStr})` }} />
   );
 };
 

@@ -7,7 +7,6 @@ export default class PreviewItem {
     title,
     releaseDate,
     genres,
-    overview,
     rating,
     poster_path
   ) {
@@ -15,7 +14,6 @@ export default class PreviewItem {
     this.title = title;
     this.releaseDate = releaseDate;
     this.genres = genres;
-    this.overview = overview;
     this.rating = rating;
     this.posterPath = poster_path;
   }
@@ -43,7 +41,8 @@ export default class PreviewItem {
   }
 
   getGenresFormat() {
-    const genreNames = this.getGenreNames();
+    let genreNames = this.getGenreNames().slice(0, 3);
+
     return genreNames.join(` ${String.fromCharCode(8226)} `);
   }
 };

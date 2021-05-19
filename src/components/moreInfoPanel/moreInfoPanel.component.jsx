@@ -38,11 +38,15 @@ const KeywordsPanel = ({ keywordsList }) => {
       <div className="panel__heading facts__heading">
         <h4>Keywords</h4>
       </div>
-      <ul className="keywords__list">
-        {
-          keywordsList.map((keyword) => <li key={keyword} className="keywords__item">{keyword}</li>)
-        }
-      </ul>
+      {
+        keywordsList.length !== 0 ?
+          <ul className="keywords__list">
+            {
+              keywordsList.map((keyword) => <li key={keyword} className="keywords__item">{keyword}</li>)
+            }
+          </ul> :
+          <p>No keywords have been added.</p>
+      }
     </section>
   );
 };

@@ -1,12 +1,22 @@
-.page-header {
+.site-header {
   background-color: var(--bg-dark);
   color: var(--secondary-text);
 }
 
 .logo {
-  font-family: 'Poiret One', cursive;
-  font-weight: normal;
-  font-size: 4em;
-  letter-spacing: 4px;
+  display: inline-block;
+  // font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 1rem 0;
   margin-right: 22px;
+
+  a  {
+    display: inline-block;
+    padding: 0.4rem;
+    border: 2px solid;
+    line-height: 1;
+    border-radius: 8px;
+  }
 }

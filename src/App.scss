@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
 
 /* START of MIXIN */
 
@@ -33,7 +32,7 @@
 /* END of MIXIN */
 
 $font-primary: 'Source Sans Pro', sans-serif;
-$font-secondary: 'Montserrat', sans-serif;
+$font-secondary: 'Roboto Condensed', sans-serif;
 
 *,
 *::after,
@@ -44,8 +43,7 @@ $font-secondary: 'Montserrat', sans-serif;
 }
 
 :root {
-  // --bg-dark: #345987;
-  --bg-dark: rgb(2, 37, 65);
+  --bg-dark: #121212;
   --light-grey: #e3e3e3;
   --primary-text: #050505;
   --secondary-text: #f1f1f1;
@@ -55,6 +53,7 @@ $font-secondary: 'Montserrat', sans-serif;
   --card-border-color: #e3e3e3;
   --card-box-shadow-color: rgba(0, 0, 0, 0.1);
   --gold-rating: #e4bb24;
+  --clr-link: #fff577;
 }
 
 body {
@@ -81,16 +80,20 @@ a {
   cursor: pointer;
 }
 
-.card {
-  border: 1px solid var(--card-border-color);
-  border-radius: var(--card-border-radius);
-  box-shadow: 0 2px 8px var(--card-box-shadow-color);
-  overflow: hidden;
-
-  & img {
-    display: block;
-  }
+.link--yellow {
+  color: var(--clr-link);
 }
+
+// .card {
+//   border: 1px solid var(--card-border-color);
+//   border-radius: var(--card-border-radius);
+//   box-shadow: 0 2px 8px var(--card-box-shadow-color);
+//   overflow: hidden;
+
+//   & img {
+//     display: block;
+//   }
+// }
 
 .site-footer {
   background-color: var(--bg-dark);

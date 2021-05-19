@@ -36,7 +36,6 @@ class ShowService {
         vote_average,
         first_air_date,
         poster_path,
-        overview,
       } = show;
 
       const genres = genreService.findGenres(allGenres, genre_ids);
@@ -46,7 +45,6 @@ class ShowService {
         name,
         first_air_date,
         genres,
-        overview,
         vote_average,
         poster_path
       );

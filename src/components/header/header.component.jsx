@@ -6,10 +6,10 @@ import './header.styles.scss';
 
 function Header() {
   return (
-    <header className="page-header">
+    <header className="site-header">
       <ContentWrapper>
         <div className="logo">
-          <Link to='/'>tvAPP</Link>
+          <Link to='/' className="link--yellow">TvApp</Link>
         </div>
       </ContentWrapper>
     </header>
