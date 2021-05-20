@@ -6,7 +6,7 @@ import './seasonsPanel.styles.scss';
 
 function SeasonPanel({ title, seasons }) {
   const seasonsInOrder = seasons.sort((a, b) => b.seasonNumber - a.seasonNumber);
-  const seasonsList = seasons.length > 8 ? seasonsInOrder.slice(0, 8) : seasonsInOrder;
+  const seasonsList = seasonsInOrder.slice(0, 4);
 
   return (
     <section className="panel season__panel">
@@ -25,7 +25,7 @@ function SeasonPanel({ title, seasons }) {
           }
         </ol>
         {
-          seasons.length > 8 ?
+          seasons.length > 4 ?
             <Link className="link--more" to="#">Show More Seasons</Link> :
             null
         }

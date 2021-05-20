@@ -100,6 +100,7 @@ class ShowService {
       created_by,
     } = data;
 
+    const seasonPreviews = seasons.map(season => new PreviewSeason(season));
     const creators = created_by.map(creator => creator.name);
 
     return new ShowDetails(
@@ -114,7 +115,7 @@ class ShowService {
       overview,
       tagline,
       status,
-      seasons,
+      seasonPreviews,
       origin_country,
       original_language,
       poster_path,

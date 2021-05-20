@@ -40,9 +40,9 @@ function ShowPage() {
             <ContentWrapper>
               <SingleShowGrid>
                 <CastPanel showId={showId} />
-                {/* <SeasonPanel title={show.title} seasons={show.seasons} />
-                <VideoPanel videos={show.videos} />
-                <RecommendedPanel recommendedShows={show.recommendedShows} /> */}
+                <SeasonPanel title={showDetails.title} seasons={showDetails.seasons} />
+                {/* <VideoPanel videos={show.videos} /> */}
+                {/* <RecommendedPanel recommendedShows={show.recommendedShows} /> */}
                 <MoreInfoPanel showDetails={showDetails} />
               </SingleShowGrid>
             </ContentWrapper>
