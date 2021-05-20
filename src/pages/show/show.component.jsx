@@ -20,7 +20,6 @@ function ShowPage() {
     const getShow = async () => {
       setLoading(true);
       const fetchedShow = await showService.fetchShow(showId);
-      console.log(fetchedShow);
       setShow(fetchedShow);
       setLoading(false);
     };

@@ -21,8 +21,10 @@ class ShowService {
     };
 
     const { data } = await tvApi.get('/popular', options);
+    const fetchedShows = data.results.slice(0, numOfShows);
+    const showPreviews = await this.createShowPreviews(fetchedShows);
 
-    return data.results.slice(0, numOfShows);
+    return showPreviews;
   }
 
   async createShowPreviews(fetchedShows) {
