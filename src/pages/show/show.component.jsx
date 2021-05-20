@@ -20,7 +20,6 @@ function ShowPage() {
     const getShow = async () => {
       setLoading(true);
       const fetchedShow = await showService.fetchDetails(showId);
-      console.log(fetchedShow);
       setShowDetails(fetchedShow);
       setLoading(false);
     };
@@ -40,8 +39,8 @@ function ShowPage() {
             <PageHeader showDetails={showDetails} />
             <ContentWrapper>
               <SingleShowGrid>
-                {/* <CastPanel cast={show.cast} />
-                <SeasonPanel title={show.title} seasons={show.seasons} />
+                <CastPanel showId={showId} />
+                {/* <SeasonPanel title={show.title} seasons={show.seasons} />
                 <VideoPanel videos={show.videos} />
                 <RecommendedPanel recommendedShows={show.recommendedShows} /> */}
                 <MoreInfoPanel showDetails={showDetails} />

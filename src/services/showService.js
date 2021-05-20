@@ -151,7 +151,7 @@ class ShowService {
     return keywords;
   }
 
-  async fetchCredits(tvId, language = 'en-US') {
+  async fetchCast(tvId, language = 'en-US') {
     const options = {
       params: {
         language,
@@ -161,7 +161,15 @@ class ShowService {
 
     const { data } = await tvApi.get(`/${tvId}/credits`, options);
 
-    return data.cast;
+    let castWithEpisodes;
+
+    if (data.cast.length !== 0) {
+      castWithEpisodes = await this.createCastWithEpisodes(data.cast);
+    } else {
+      castWithEpisodes = null;
+    }
+
+    return castWithEpisodes;
   }
 
   async fetchEpisodeCount(personId, creditId, language = 'en-US') {
@@ -211,16 +219,11 @@ class ShowService {
 
   async fetchShow(tvId, page, language) {
     const details = await this.fetchDetails2(tvId, language);
-    const cast = await this.fetchCredits(tvId, language);
+    const cast = await this.fetchCast(tvId, language);
     const externalIds = await this.fetchExternalIds(tvId, language);
     const keywords = await this.fetchKeywords(tvId, language);
     const recommended = await this.fetchRecommended(tvId, page, language);
     const recommendedShows = await this.createShowPreviews(recommended);
-
-    let castWithEpisodes;
-    if (cast.length !== 0) castWithEpisodes = await this.createCastWithEpisodes(cast);
-    else castWithEpisodes = null;
-
 
     const {
       id,
@@ -271,7 +274,7 @@ class ShowService {
       backdrop_path,
       videoList,
       creators,
-      castWithEpisodes,
+      cast,
       homepage,
       externalIds,
       keywords,

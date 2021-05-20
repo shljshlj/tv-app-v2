@@ -1,27 +1,55 @@
+import { useState, useEffect } from 'react';
+import { showService } from '../../services/showService';
 import CastCard from '../castCard/castCard.component';
 
 import './castPanel.styles.scss';
 
-function CastPanel({ cast }) {
-  const castInOrder = cast.sort((a, b) => a.order - b.order);
+function CastPanel({ showId }) {
+  const [cast, setCast] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getCast = async () => {
+      setLoading(true);
+      const cast = await showService.fetchCast(showId);
+      const castInOrder = cast.sort((a, b) => a.order - b.order);
+
+      setCast(castInOrder);
+      setLoading(false);
+    };
+
+    getCast();
+  }, [showId]);
+
+  if (loading) {
+    return (
+      <section className="panel cast__panel">Loading...</section>
+    );
+  }
+
+  if (!loading && cast) {
+    return (
+      <section className="panel cast__panel">
+        <div className="panel__heading cast__heading">
+          <h3>Cast</h3>
+          <span className="cast__heading-label">Series Cast Summary:</span>
+        </div>
+        <div className="cast-scroller should_fade is_fading">
+          <ol className="cast__list">
+            {cast.map((person) => {
+              const profileImgUrl = person.getProfileImgUrl();
+              const genderStr = person.getGenderStr();
+              return <CastCard key={person.id} person={person} profileImgUrl={profileImgUrl} genderStr={genderStr} />;
+            })}
+          </ol>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section className="panel cast__panel">
-      <div className="panel__heading cast__heading">
-        <h3>Cast</h3>
-        <span className="cast__heading-label">Series Cast Summary:</span>
-      </div>
-      <div className="cast-scroller should_fade is_fading">
-        <ol className="cast__list">
-          {castInOrder.map((person) => {
-            const profileImgUrl = person.getProfileImgUrl();
-            const genderStr = person.getGenderStr();
-            return <CastCard key={person.id} person={person} profileImgUrl={profileImgUrl} genderStr={genderStr} />;
-          })}
-        </ol>
-      </div>
-    </section>
-  );
+    <section className="panel cast__panel">No cast info.</section>
+  )
 }
 
 export default CastPanel;
