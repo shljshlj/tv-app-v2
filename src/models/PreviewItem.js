@@ -42,7 +42,6 @@ export default class PreviewItem {
 
   getGenresFormat() {
     let genreNames = this.getGenreNames().slice(0, 3);
-
     return genreNames.join(` ${String.fromCharCode(8226)} `);
   }
 };

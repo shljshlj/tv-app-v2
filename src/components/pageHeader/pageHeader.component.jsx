@@ -2,15 +2,14 @@ import ContentWrapper from '../../components/layout/contentWrapper/contentWrappe
 
 import './pageHeader.styles.scss';
 
-function PageHeader({ show }) {
-  const { title, voteAverage, voteCount, overview } = show;
-  const runtime = show.episodeRuntime + 'min';
-  const genres = show.getGenreList();
-  const creators = show.getCreatorsList();
-  const posterUrl = show.getPosterUrl();
-  const backdropUrl = show.getBackdropUrl();
-  const dateFormat = show.getDateFormat();
-  const { numOfCreators, creatorsList } = creators;
+function PageHeader({ showDetails }) {
+  const { title, voteAverage, voteCount, overview, tagline, creators } = showDetails;
+  const runtime = showDetails.episodeRuntime + 'min';
+  const genreString = showDetails.getGenreString();
+  const creatorString = showDetails.getCreatorString();
+  const posterUrl = showDetails.getPosterUrl();
+  const backdropUrl = showDetails.getBackdropUrl();
+  const dateFormat = showDetails.getDateFormat();
 
   const sectionStyle = {
     backgroundImage: `url(${backdropUrl})`
@@ -32,7 +31,7 @@ function PageHeader({ show }) {
                 <div className="title__subtext">
                   <span>{runtime}</span>
                   <span className="title__divider">{String.fromCharCode(124)}</span>
-                  <span>{genres}</span>
+                  <span>{genreString}</span>
                   <span className="title__divider">{String.fromCharCode(124)}</span>
                   <span>TV Series {dateFormat}</span>
                 </div>
@@ -46,13 +45,14 @@ function PageHeader({ show }) {
                   </strong>
                 </div>
               </div>
+              {tagline && <p className="tagline">{tagline}</p>}
               <div className="summary">
                 <h3>Overview</h3>
                 <p>{overview}</p>
               </div>
               <div className="creators">
-                <h4>{numOfCreators > 1 ? 'Creators:' : 'Creator:'}</h4>
-                <span>{creatorsList}</span>
+                <h4>{creators.length > 1 ? 'Creators:' : 'Creator:'}</h4>
+                <span>{creatorString}</span>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { personApi } from '../shared/api';
 import { genreService } from './genreService';
 
 import PreviewItem from '../models/PreviewItem';
+import ShowDetails from '../models/ShowDetails';
 import ExternalIds from '../models/ExternalIds';
 import PreviewPerson from '../models/PreviewPerson';
 import Show from '../models/Show';
@@ -53,7 +54,7 @@ class ShowService {
     });
   }
 
-  async fetchDetails(tvId, language = 'en-US') {
+  async fetchDetails2(tvId, language = 'en-US') {
     const options = {
       params: {
         language,
@@ -65,6 +66,89 @@ class ShowService {
     const { data } = await tvApi.get(`/${tvId}`, options);
 
     return data;
+  }
+
+  async fetchDetails(tvId, language = 'en-US') {
+    const options = {
+      params: {
+        language,
+        append_to_response: 'videos',
+        api_key: API_KEY,
+      },
+    };
+
+    const { data } = await tvApi.get(`/${tvId}`, options);
+
+    const {
+      id,
+      name,
+      episode_run_time,
+      genres,
+      first_air_date,
+      last_air_date,
+      vote_average,
+      vote_count,
+      overview,
+      tagline,
+      status,
+      seasons,
+      origin_country,
+      original_language,
+      poster_path,
+      backdrop_path,
+      homepage,
+      created_by,
+    } = data;
+
+    const creators = created_by.map(creator => creator.name);
+
+    return new ShowDetails(
+      id,
+      name,
+      episode_run_time,
+      genres,
+      first_air_date,
+      last_air_date,
+      vote_average,
+      vote_count,
+      overview,
+      tagline,
+      status,
+      seasons,
+      origin_country,
+      original_language,
+      poster_path,
+      backdrop_path,
+      homepage,
+      creators
+    );
+  }
+
+  async fetchExternalIds(tvId, language = 'en-US') {
+    const options = {
+      params: {
+        language,
+        api_key: API_KEY,
+      },
+    };
+
+    const { data } = await tvApi.get(`/${tvId}/external_ids`, options);
+
+    return new ExternalIds(data);
+  }
+
+  async fetchKeywords(tvId, language = 'en-US') {
+    const options = {
+      params: {
+        language,
+        api_key: API_KEY,
+      },
+    };
+
+    const { data } = await tvApi.get(`/${tvId}/keywords`, options);
+    const keywords = data.results;
+
+    return keywords;
   }
 
   async fetchCredits(tvId, language = 'en-US') {
@@ -110,32 +194,6 @@ class ShowService {
     }))
   }
 
-  async fetchExternalIds(tvId, language = 'en-US') {
-    const options = {
-      params: {
-        language,
-        api_key: API_KEY,
-      },
-    };
-
-    const { data } = await tvApi.get(`/${tvId}/external_ids`, options);
-
-    return new ExternalIds(data);
-  }
-
-  async fetchKeywords(tvId, language = 'en-US') {
-    const options = {
-      params: {
-        language,
-        api_key: API_KEY,
-      },
-    };
-
-    const { data } = await tvApi.get(`/${tvId}/keywords`, options);
-    const keywords = data.results;
-
-    return keywords;
-  }
 
   async fetchRecommended(tvId, page = 1, language = 'en-US') {
     const options = {
@@ -152,7 +210,7 @@ class ShowService {
   }
 
   async fetchShow(tvId, page, language) {
-    const details = await this.fetchDetails(tvId, language);
+    const details = await this.fetchDetails2(tvId, language);
     const cast = await this.fetchCredits(tvId, language);
     const externalIds = await this.fetchExternalIds(tvId, language);
     const keywords = await this.fetchKeywords(tvId, language);

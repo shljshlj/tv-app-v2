@@ -13,14 +13,15 @@ import MoreInfoPanel from '../../components/moreInfoPanel/moreInfoPanel.componen
 
 function ShowPage() {
   const { showId } = useParams();
-  const [show, setShow] = useState(null);
+  const [showDetails, setShowDetails] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getShow = async () => {
       setLoading(true);
-      const fetchedShow = await showService.fetchShow(showId);
-      setShow(fetchedShow);
+      const fetchedShow = await showService.fetchDetails(showId);
+      console.log(fetchedShow);
+      setShowDetails(fetchedShow);
       setLoading(false);
     };
 
@@ -34,16 +35,16 @@ function ShowPage() {
   return (
     <>
       {
-        show ?
+        showDetails ?
           (<>
-            <PageHeader show={show} />
+            <PageHeader showDetails={showDetails} />
             <ContentWrapper>
               <SingleShowGrid>
-                <CastPanel cast={show.cast} />
+                {/* <CastPanel cast={show.cast} />
                 <SeasonPanel title={show.title} seasons={show.seasons} />
                 <VideoPanel videos={show.videos} />
-                <RecommendedPanel recommendedShows={show.recommendedShows} />
-                <MoreInfoPanel show={show} />
+                <RecommendedPanel recommendedShows={show.recommendedShows} /> */}
+                <MoreInfoPanel showDetails={showDetails} />
               </SingleShowGrid>
             </ContentWrapper>
           </>) :
