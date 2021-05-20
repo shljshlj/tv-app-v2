@@ -89,7 +89,7 @@
       text-overflow: ellipsis;
     }
 
-    & a + span {
+    & span:first-of-type {
       padding-top: 10px;
     }
   }

@@ -51,14 +51,17 @@
 
 .poster_wrapper {
   width: 300px;
-  height: auto;
+  // height: auto;
+  min-height: 450px;
   overflow: hidden;
   border-radius: var(--card-border-radius);
 }
 
 .poster img {
   display: block;
+  height: 100%;
   width: 100%;
+  object-fit: contain;
 }
 
 .rating {

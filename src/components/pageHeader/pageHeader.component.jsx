@@ -22,7 +22,7 @@ function PageHeader({ showDetails }) {
           <div className="page-header_wrapper">
             <div className="poster_wrapper">
               <div className="poster">
-                <img src={posterUrl} alt={`Poster for ${title} show`} />
+                <img loading="lazy" src={posterUrl} alt={`Poster for ${title} show`} />
               </div>
             </div>
             <div className="overview">

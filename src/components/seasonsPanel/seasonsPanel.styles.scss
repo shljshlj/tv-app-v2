@@ -2,18 +2,50 @@
   &__panel {
     grid-area: season;
   }
+
+  &__list {
+    margin-bottom: 1rem;
+  }
   
   &__card {
     display: flex;
     margin-bottom: 10px;
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 2px 8px var(--card-box-shadow-color);
+    overflow: hidden;
 
     &:last-of-type {
       margin-bottom: 0;
+    }
+
+    &-poster {
+      flex-basis: 130px;
+      height: 195px;
+      overflow: hidden;
+      // flex-grow: 2;
+      flex-shrink: 0;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &.placeholder {
+        background-color: var(--light-grey);
+        background-size: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
     }
   }
   
   &__content {
     padding: 20px;
+    // flex-grow: 1;
+    // flex-shrink: 2;
   }
 
   &_subheading {
@@ -23,5 +55,30 @@
   &__overview {
     font-size: 0.9em;
     padding-top: 20px;
+  }
+}
+
+.text-overview {
+  font-size: 1em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+}
+
+.link {
+  &--more {
+    display: inline-block;
+    margin-top: 4px;
+    color: var(--bg-dark);
+    font-weight: 600;
+
+    &::after {
+      content: ' \00BB';
+      color: #000;
+      font-weight: 400;
+    }
   }
 }

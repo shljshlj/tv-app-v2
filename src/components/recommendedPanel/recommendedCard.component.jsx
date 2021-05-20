@@ -5,7 +5,7 @@ function RecommendedCard({ id, posterUrl, title, rating }) {
     <li className="recommended__item">
       <div className="recommended__item-image">
         <Link to={`/show/${id}`}>
-          <img src={posterUrl} alt="" />
+          <img src={posterUrl} alt="" loading="lazy" />
         </Link>
       </div>
       <div className="recommended__item-info">

@@ -1,4 +1,4 @@
-import { POSTER_PATH_XS } from '../shared/constants';
+import { POSTER_PATH_S } from '../shared/constants';
 
 export default class PreviewSeason {
   constructor({
@@ -26,6 +26,6 @@ export default class PreviewSeason {
 
   getPosterUrl() {
     if (!this.posterPath) return null;
-    return `${POSTER_PATH_XS}${this.posterPath}`;
+    return `${POSTER_PATH_S}${this.posterPath}`;
   }
 }

@@ -7,7 +7,6 @@ import PreviewItem from '../models/PreviewItem';
 import ShowDetails from '../models/ShowDetails';
 import ExternalIds from '../models/ExternalIds';
 import PreviewPerson from '../models/PreviewPerson';
-import Show from '../models/Show';
 import PreviewSeason from '../models/PreviewSeason';
 import Video from '../models/Video';
 
@@ -52,20 +51,6 @@ class ShowService {
         poster_path
       );
     });
-  }
-
-  async fetchDetails2(tvId, language = 'en-US') {
-    const options = {
-      params: {
-        language,
-        append_to_response: 'videos',
-        api_key: API_KEY,
-      },
-    };
-
-    const { data } = await tvApi.get(`/${tvId}`, options);
-
-    return data;
   }
 
   async fetchDetails(tvId, language = 'en-US') {
@@ -229,72 +214,9 @@ class ShowService {
 
     const { data } = await tvApi.get(`/${tvId}/recommendations`, options);
 
-    return data.results;
-  }
+    const recommendedShows = await this.createShowPreviews(data.results);
 
-  async fetchShow(tvId, page, language) {
-    const details = await this.fetchDetails2(tvId, language);
-    const cast = await this.fetchCast(tvId, language);
-    const externalIds = await this.fetchExternalIds(tvId, language);
-    const keywords = await this.fetchKeywords(tvId, language);
-    const recommended = await this.fetchRecommended(tvId, page, language);
-    const recommendedShows = await this.createShowPreviews(recommended);
-
-    const {
-      id,
-      name,
-      episode_run_time,
-      genres,
-      first_air_date,
-      last_air_date,
-      vote_average,
-      vote_count,
-      overview,
-      status,
-      type,
-      number_of_episodes,
-      number_of_seasons,
-      seasons,
-      origin_country,
-      original_language,
-      poster_path,
-      backdrop_path,
-      videos,
-      homepage,
-      created_by,
-    } = details;
-
-    const creators = created_by.map(creator => creator.name);
-    const seasonPreviews = seasons.map(season => new PreviewSeason(season));
-    const videoList = videos.results.length !== 0 ? videos.results.map(video => new Video(video)) : null;
-
-    return new Show(
-      id,
-      name,
-      episode_run_time,
-      genres,
-      first_air_date,
-      last_air_date,
-      vote_average,
-      vote_count,
-      overview,
-      status,
-      type,
-      number_of_episodes,
-      number_of_seasons,
-      seasonPreviews,
-      origin_country,
-      original_language,
-      poster_path,
-      backdrop_path,
-      videoList,
-      creators,
-      cast,
-      homepage,
-      externalIds,
-      keywords,
-      recommendedShows
-    );
+    return recommendedShows;
   }
 }
 
