@@ -1,8 +1,30 @@
+import { useEffect, useState } from 'react';
+import { showService } from '../../services/showService';
 import VideoCard from '../videoCard/videoCard.component';
 
 import './videoPanel.styles.scss';
 
-function VideoPanel({ videos }) {
+function VideoPanel({ showId }) {
+  const [videos, setVideos] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getVideos = async () => {
+      setLoading(true);
+      const videos = await showService.fetchVideos(showId);
+
+      setVideos(videos);
+      setLoading(false);
+    };
+
+    getVideos();
+  }, [showId]);
+
+  if (loading) {
+    return (
+      <section className="panel video__panel">Loading...</section>
+    );
+  }
 
   return (
     <section className="panel video__panel">

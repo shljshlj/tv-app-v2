@@ -41,7 +41,7 @@ function ShowPage() {
               <SingleShowGrid>
                 <CastPanel showId={showId} />
                 <SeasonPanel title={showDetails.title} seasons={showDetails.seasons} />
-                {/* <VideoPanel videos={show.videos} /> */}
+                <VideoPanel showId={showId} />
                 {/* <RecommendedPanel recommendedShows={show.recommendedShows} /> */}
                 <MoreInfoPanel showDetails={showDetails} />
               </SingleShowGrid>

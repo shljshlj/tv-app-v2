@@ -203,6 +203,20 @@ class ShowService {
     }))
   }
 
+  async fetchVideos(tvId, language = 'en-US') {
+    const endpoint = `/${tvId}/videos`;
+    const options = {
+      params: {
+        language,
+        api_key: API_KEY,
+      },
+    };
+
+    const { data } = await tvApi.get(endpoint, options);
+    const videoList = data.results.length !== 0 ? data.results.map(video => new Video(video)) : null;
+
+    return videoList;
+  }
 
   async fetchRecommended(tvId, page = 1, language = 'en-US') {
     const options = {
