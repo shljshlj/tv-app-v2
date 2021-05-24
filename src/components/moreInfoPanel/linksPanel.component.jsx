@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { showService } from '../../services/showService';
 
 const FacebookLink = ({ facebook }) => {
@@ -63,7 +64,6 @@ const ImdbSection = ({ imdb, imgAlt }) => {
             src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" />
         </a>
       </span>
-      {/* <script>{imdbRating(document, 'script', 'imdb-rating-api')}</script> */}
     </section>
   );
 };

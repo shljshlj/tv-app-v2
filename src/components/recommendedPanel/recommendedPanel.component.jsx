@@ -1,29 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { usePromise, useMount } from 'react-use';
 import { showService } from '../../services/showService';
 import RecommendedCard from './recommendedCard.component';
 
 import './recommendedPanel.styles.scss';
 
 function RecommendedPanel({ showId }) {
+  const mounted = usePromise();
   const [recommendedShows, setRecommendedShows] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getRecommendedShow = async () => {
-      setLoading(true);
-      const recommendedShows = await showService.fetchRecommended(showId);
-
-      setRecommendedShows(recommendedShows);
-      setLoading(false);
-    };
-
+  useMount(() => {
     getRecommendedShow();
-  }, [showId]);
+  })
+
+  const getRecommendedShow = async () => {
+    setLoading(true);
+    const { recommendedShows, error } = await mounted(showService.fetchRecommended(showId));
+
+    setError(error);
+    setRecommendedShows(recommendedShows);
+    setLoading(false);
+  };
 
   if (loading) {
     return (
       <section className="panel recommended__panel">Loading...</section>
     )
+  }
+
+  if (error) {
+    console.log(error);
   }
 
   return (

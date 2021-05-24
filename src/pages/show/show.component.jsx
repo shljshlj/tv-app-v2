@@ -39,6 +39,11 @@ function ShowPage() {
             <PageHeader showDetails={showDetails} />
             <ContentWrapper>
               <SingleShowGrid>
+                {/*
+                  This components have problem with unmounting and updating the state
+                  only if they are nested like this,
+                  but not if they are on the same level with the PageHeader component (?)
+                */}
                 <CastPanel showId={showId} />
                 <SeasonPanel title={showDetails.title} seasons={showDetails.seasons} />
                 <VideoPanel showId={showId} />

@@ -10,6 +10,7 @@ import PreviewPerson from '../models/PreviewPerson';
 import PreviewSeason from '../models/PreviewSeason';
 import Video from '../models/Video';
 
+
 class ShowService {
   async fetchPopular(numOfShows = 4, page = 1, language = 'en-US') {
     const options = {
@@ -145,17 +146,23 @@ class ShowService {
       },
     };
 
-    const { data } = await tvApi.get(`/${tvId}/credits`, options);
+    try {
+      const { data } = await tvApi.get(`/${tvId}/credits`, options);
 
-    let castWithEpisodes;
+      const castWithEpisodes = data.cast.length !== 0 ? await this.createCastWithEpisodes(data.cast) : null;
 
-    if (data.cast.length !== 0) {
-      castWithEpisodes = await this.createCastWithEpisodes(data.cast);
-    } else {
-      castWithEpisodes = null;
+      return {
+        cast: castWithEpisodes,
+        error: null
+      };
+    } catch (err) {
+      console.error(err.message);
+
+      return {
+        cast: null,
+        error: err.message
+      };
     }
-
-    return castWithEpisodes;
   }
 
   async fetchEpisodeCount(personId, creditId, language = 'en-US') {
@@ -185,7 +192,7 @@ class ShowService {
       const episodeCount = await this.fetchEpisodeCount(personId, creditId);
 
       return new PreviewPerson(person, episodeCount);
-    }))
+    }));
   }
 
   async fetchVideos(tvId, language = 'en-US') {
@@ -197,10 +204,24 @@ class ShowService {
       },
     };
 
-    const { data } = await tvApi.get(endpoint, options);
-    const videoList = data.results.length !== 0 ? data.results.map(video => new Video(video)) : null;
+    try {
+      const { data } = await tvApi.get(endpoint, options);
 
-    return videoList;
+      const videoList = data.results.length !== 0 ? data.results.map(video => new Video(video)) : null;
+
+      return {
+        videos: videoList,
+        error: null
+      };
+    } catch (err) {
+      console.error(err.message);
+
+      return {
+        videos: null,
+        error: err.message
+      };
+    }
+
   }
 
   async fetchRecommended(tvId, page = 1, language = 'en-US') {
@@ -212,11 +233,23 @@ class ShowService {
       },
     };
 
-    const { data } = await tvApi.get(`/${tvId}/recommendations`, options);
+    try {
+      const { data } = await tvApi.get(`/${tvId}/recommendations`, options);
+      const recommendations = await this.createShowPreviews(data.results);
+      const recommendedShows = recommendations.slice(0, 8);
 
-    const recommendedShows = await this.createShowPreviews(data.results);
+      return {
+        recommendedShows,
+        error: null
+      };
+    } catch (err) {
+      console.error(err.message);
 
-    return recommendedShows;
+      return {
+        recommendedShows: null,
+        error: err.message
+      };
+    }
   }
 }
 

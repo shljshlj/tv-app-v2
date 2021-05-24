@@ -1,29 +1,37 @@
 import { useEffect, useState } from 'react';
+import { useMount, usePromise } from 'react-use';
 import { showService } from '../../services/showService';
 import VideoCard from '../videoCard/videoCard.component';
 
 import './videoPanel.styles.scss';
 
 function VideoPanel({ showId }) {
+  const mounted = usePromise();
   const [videos, setVideos] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getVideos = async () => {
-      setLoading(true);
-      const videos = await showService.fetchVideos(showId);
-
-      setVideos(videos);
-      setLoading(false);
-    };
-
+  useMount(() => {
     getVideos();
-  }, [showId]);
+  })
+
+  const getVideos = async () => {
+    setLoading(true);
+    const { videos, error } = await mounted(showService.fetchVideos(showId));
+
+    setError(error);
+    setVideos(videos);
+    setLoading(false);
+  };
 
   if (loading) {
     return (
       <section className="panel video__panel">Loading...</section>
     );
+  }
+
+  if (error) {
+    console.log(error);
   }
 
   return (

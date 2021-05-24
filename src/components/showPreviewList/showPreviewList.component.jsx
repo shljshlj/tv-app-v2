@@ -13,7 +13,6 @@ function ShowPreviewList() {
     const getPopularShows = async () => {
       setLoading(true);
       const fetchedPopularShows = await showService.fetchPopular(10);
-      // const popularShows = await showService.createShowPreviews(fetchedPopularShows);
 
       setPopularShows(fetchedPopularShows)
       setLoading(false);

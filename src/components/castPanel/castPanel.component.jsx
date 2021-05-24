@@ -1,30 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { usePromise, useMount } from 'react-use';
+
 import { showService } from '../../services/showService';
 import CastCard from '../castCard/castCard.component';
 
 import './castPanel.styles.scss';
 
 function CastPanel({ showId }) {
+  const mounted = usePromise();
   const [cast, setCast] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getCast = async () => {
-      setLoading(true);
-      const cast = await showService.fetchCast(showId);
-      const castInOrder = cast && cast.sort((a, b) => a.order - b.order);
-
-      setCast(castInOrder);
-      setLoading(false);
-    };
-
+  useMount(() => {
     getCast();
-  }, [showId]);
+  });
+
+  const getCast = async () => {
+    setLoading(true);
+
+    const { cast, error } = await mounted(showService.fetchCast(showId));
+    const castInOrder = cast && cast.sort((a, b) => a.order - b.order);
+
+    setError(error);
+    setCast(castInOrder);
+    setLoading(false);
+  };
 
   if (loading) {
     return (
       <section className="panel cast__panel">Loading...</section>
     );
+  }
+
+  if (error) {
+    console.log(error);
   }
 
   return (
