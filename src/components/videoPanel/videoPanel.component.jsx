@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMount, usePromise } from 'react-use';
 import { showService } from '../../services/showService';
 import VideoCard from '../videoCard/videoCard.component';

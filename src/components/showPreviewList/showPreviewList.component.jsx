@@ -5,21 +5,26 @@ import ShowPreviewItem from '../showPreviewItem/showPreviewItem.component';
 
 import './showPreviewList.styles.scss';
 
-function ShowPreviewList() {
-  const [popularShows, setPopularShows] = useState(null);
+const fetchShows = {
+  POPULAR: showService.fetchPopular,
+  TOP_RATED: showService.fetchTopRated
+};
+
+function ShowPreviewList({ type }) {
+  const [shows, setShows] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const getPopularShows = async () => {
+    const getShows = async () => {
       setLoading(true);
-      const fetchedPopularShows = await showService.fetchPopular(10);
+      const fetchedShows = await fetchShows[type](10);
 
-      setPopularShows(fetchedPopularShows)
+      setShows(fetchedShows)
       setLoading(false);
     }
 
-    getPopularShows();
-  }, []);
+    getShows();
+  }, [type]);
 
   if (loading) {
     return <h2>Loading...</h2>
@@ -28,7 +33,7 @@ function ShowPreviewList() {
   return (
     <ul className="main__section-grid movies-popular">
       {
-        popularShows && popularShows.map((show) => <ShowPreviewItem key={show.id} show={show} />)
+        shows && shows.map((show) => <ShowPreviewItem key={show.id} show={show} />)
       }
     </ul>
   );

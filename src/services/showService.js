@@ -12,20 +12,25 @@ import Video from '../models/Video';
 
 
 class ShowService {
-  async fetchPopular(numOfShows = 4, page = 1, language = 'en-US') {
-    const options = {
-      params: {
-        page,
-        language,
-        api_key: API_KEY,
-      },
-    };
+  fetchPopular = this.fetchShows('/popular');
+  fetchTopRated = this.fetchShows('/top_rated');
 
-    const { data } = await tvApi.get('/popular', options);
-    const fetchedShows = data.results.slice(0, numOfShows);
-    const showPreviews = await this.createShowPreviews(fetchedShows);
+  fetchShows(endpoint) {
+    return async (numOfShows = 20, page = 1, language = 'en-US') => {
+      const options = {
+        params: {
+          page,
+          language,
+          api_key: API_KEY,
+        },
+      };
 
-    return showPreviews;
+      const { data } = await tvApi.get(endpoint, options);
+      const fetchedShows = data.results.slice(0, numOfShows);
+      const showPreviews = await this.createShowPreviews(fetchedShows);
+
+      return showPreviews;
+    }
   }
 
   async createShowPreviews(fetchedShows) {
