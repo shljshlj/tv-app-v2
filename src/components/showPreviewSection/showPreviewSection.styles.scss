@@ -5,22 +5,12 @@
 
   &-title {
     margin: 1em 0;
-    font-size: 2em;
+    font-size: 2.2rem;
     font-weight: normal;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1rem;
     color: #121212;
     border-bottom: 1px solid #121212;
-  }
-
-  &-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 1rem;
-
-    @media (min-width: 768px) {
-      grid-gap: 1.5rem;
-    }
   }
 
   &-link {
@@ -42,7 +32,7 @@
     &:hover {
       color: #fff;
       box-shadow: inset 0px 0px 0px 3px #b38c00,
-      inset 90px -40px 0px 1px #b38c00;
+      inset 300px 0px 0px 1px #b38c00;
     }
 
     &::after {
@@ -52,15 +42,9 @@
       top: 50%;
       padding-right: 3rem;
       border-radius: inherit;
+      border: 0.6rem solid transparent;
+      border-right: none;
       border-left-color: #66500085;
-      border-left-style: solid;
-      border-left-width: 0.6rem;
-      border-top-color: transparent;
-      border-top-width: 0.6rem;
-      border-top-style: solid;
-      border-bottom-color: transparent;
-      border-bottom-width: 0.6rem;
-      border-bottom-style: solid;
       transform: translate(0, -50%);
       animation: 1s infinite ease-in-out;
       animation-delay: 0.1s;

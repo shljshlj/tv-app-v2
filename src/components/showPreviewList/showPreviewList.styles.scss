@@ -9,3 +9,15 @@
     }
   }
 }
+
+.showspage__shows {
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-gap: 1rem;
+
+    @media (min-width: 768px) {
+      grid-gap: 1.6rem;
+    }
+  }
+}

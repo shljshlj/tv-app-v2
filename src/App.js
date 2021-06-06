@@ -7,6 +7,7 @@ import Footer from './components/footer/footer.component';
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShowPage from './pages/show/show.component';
+import ShowsPage from './pages/showspage/showspage.component';
 
 import './App.scss';
 
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/show/:showId' component={ShowPage} />
+          <Route path='/tv/:tvId' component={ShowsPage} />
         </Switch>
       </PageContainer>
       <Footer />

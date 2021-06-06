@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useMount, usePromise } from 'react-use';
 import { showService } from '../../services/showService';
 
 import ShowPreviewItem from '../showPreviewItem/showPreviewItem.component';
@@ -10,28 +11,29 @@ const fetchShows = {
   TOP_RATED: showService.fetchTopRated
 };
 
-function ShowPreviewList({ type }) {
-  const [shows, setShows] = useState(null);
+function ShowPreviewList({ type, numOfShows, className }) {
+  const mounted = usePromise();
+  const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const getShows = async () => {
-      setLoading(true);
-      const fetchedShows = await fetchShows[type](10);
+  useMount(() => {
+    getShows(type);
+  })
 
-      setShows(fetchedShows)
-      setLoading(false);
-    }
+  const getShows = async () => {
+    setLoading(true);
+    const fetchedShows = await mounted(fetchShows[type](numOfShows));
 
-    getShows();
-  }, [type]);
+    setShows(fetchedShows);
+    setLoading(false);
+  }
 
   if (loading) {
-    return <h2>Loading...</h2>
+    return <p>Loading...</p>
   }
 
   return (
-    <ul className="main__section-grid movies-popular">
+    <ul className={className}>
       {
         shows && shows.map((show) => <ShowPreviewItem key={show.id} show={show} />)
       }
