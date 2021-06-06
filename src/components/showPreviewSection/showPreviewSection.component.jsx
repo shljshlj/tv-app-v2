@@ -23,7 +23,7 @@ function ShowPreviewSection({ type }) {
       <header className="main__section-header">
         <h1 className="main__section-title">{title}</h1>
       </header>
-      <ShowPreviewList type={type} numOfShows={10} className="main__section-grid" />
+      <ShowPreviewList type={type} numOfShows={10} className="main__section-grid" isPaginated={false} />
       <Link to={route} className="main__section-link">Discover More</Link>
     </section>
   )

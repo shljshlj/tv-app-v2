@@ -58,8 +58,7 @@ function ShowsPage() {
           </div>
         </div>
         <div className="showspage__shows">
-          <ShowPreviewList type={type} numOfShows={20} className="showspage__shows-grid" />
-          <div className="pagination-button">Load More</div>
+          <ShowPreviewList type={type} numOfShows={20} className="showspage__shows-grid" isPaginated={true} />
         </div>
       </div>
     </ContentWrapper>

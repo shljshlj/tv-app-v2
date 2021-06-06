@@ -11,7 +11,7 @@ const fetchShows = {
   TOP_RATED: showService.fetchTopRated
 };
 
-function ShowPreviewList({ type, numOfShows, className }) {
+function ShowPreviewList({ type, numOfShows, className, isPaginated }) {
   const mounted = usePromise();
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -33,11 +33,14 @@ function ShowPreviewList({ type, numOfShows, className }) {
   }
 
   return (
-    <ul className={className}>
-      {
-        shows && shows.map((show) => <ShowPreviewItem key={show.id} show={show} />)
-      }
-    </ul>
+    <>
+      <ul className={className}>
+        {
+          shows && shows.map((show) => <ShowPreviewItem key={show.id} show={show} />)
+        }
+      </ul>
+      {isPaginated && <div className="pagination-button">Load More</div>}
+    </>
   );
 }
 
