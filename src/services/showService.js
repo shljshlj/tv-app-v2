@@ -1,5 +1,5 @@
 import { API_KEY } from '../shared/constants';
-import { tvApi } from '../shared/api';
+import { searchApi, tvApi } from '../shared/api';
 import { personApi } from '../shared/api';
 import { genreService } from './genreService';
 
@@ -254,6 +254,25 @@ class ShowService {
         recommendedShows: null,
         error: err.message
       };
+    }
+  }
+
+  async searchShows(query, page = 1, language = 'en-US') {
+    const options = {
+      params: {
+        query,
+        page,
+        language,
+        api_key: API_KEY,
+      },
+    };
+
+    try {
+      const { data } = await searchApi.get('/tv', options);
+
+      return data.results.slice(0, 8);
+    } catch (err) {
+      console.error(err.message);
     }
   }
 }

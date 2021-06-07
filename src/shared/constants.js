@@ -7,16 +7,7 @@ export const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 export const BASE_API_ENDPOINT = 'https://api.themoviedb.org/3';
 export const TV_ENDPOINT = BASE_API_ENDPOINT + '/tv';
 export const PERSON_ENDPOINT = BASE_API_ENDPOINT + '/person';
-
-const TV_TOP_RATED = `${TV_ENDPOINT}/popular?api_key=${API_KEY}`;
-const TV_POPULAR = `${TV_ENDPOINT}/top_rated?api_key=${API_KEY}`;
-
-
-// https://api.themoviedb.org/3/tv/popular?api_key=${api_key}&language=en-US&page=1
-// https://api.themoviedb.org/3/tv/top_rated?api_key=${api_key}&language=en-US&page=1
-
-
-
+export const SEARCH_ENDPOINT = BASE_API_ENDPOINT + '/search';
 
 // Poster images
 export const POSTER_PATH_XS = imageConfiguration.images.secure_base_url + imageConfiguration.images.poster_sizes[0];
