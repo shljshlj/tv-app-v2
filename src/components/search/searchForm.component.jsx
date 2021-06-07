@@ -1,10 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import ContentWrapper from '../layout/contentWrapper/contentWrapper.component';
 
 import { showService } from '../../services/showService';
 
 function SearchForm(props) {
-  const { query, setQuery, debouncedQuery, setDebouncedQuery, setSearchResults, setIsSearching } = props;
+  const { query, setQuery, debouncedQuery, setDebouncedQuery, setSearchResults, setIsSearching, setFormRef, setOpen } = props;
+
+  const formRef = useRef();
+
+  useEffect(() => {
+    setFormRef(formRef);
+  }, [setFormRef])
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -38,7 +44,12 @@ function SearchForm(props) {
 
   return (
     <ContentWrapper>
-      <form className="search-form" onSubmit={onSubmit}>
+      <form
+        ref={formRef}
+        className="search-form"
+        onSubmit={onSubmit}
+        onClick={() => setOpen(true)}
+      >
         <label htmlFor="search">
           <span className="visually-hidden">Search shows</span>
         </label>

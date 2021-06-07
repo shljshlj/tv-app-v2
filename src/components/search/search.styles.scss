@@ -37,6 +37,12 @@
   background-color: rgba(253, 253, 253, 0.95);
   border-radius: 4px;
 
+  &.hidden {
+    visibility: hidden;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
   li + li {
     border-top: 1px solid var(--border-divider);
   }
@@ -92,4 +98,9 @@
   color: grey;
   font-size: 1.2rem;
   font-weight: 700;
+
+  &.hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
 }

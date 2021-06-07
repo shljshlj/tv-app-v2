@@ -24,18 +24,37 @@ const SearchItem = ({ id, title, releaseYear, posterUrl }) => {
   )
 }
 
-const renderedResults = (results, isSearching, query) => {
+const RenderedResults = ({ results, isSearching, query, open, setOpen, formRef }) => {
+  const resultsRef = useRef();
+
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (resultsRef.current?.contains(event.target) || formRef.current?.contains(event.target)) {
+        return;
+      }
+
+      setOpen(false);
+    }
+
+    document.body.addEventListener('click', onBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener('click', onBodyClick, { capture: true });
+    };
+  }, [setOpen, formRef]);
+
+
   if (!isSearching) return null;
   if (results.length === 0) {
     return (
-      <div className="no-results">
+      <div ref={resultsRef} className={`no-results ${open ? '' : 'hidden'}`}>
         <span>NO RESULTS</span>
       </div>
     );
   }
 
   return (
-    <ul className="search-list">
+    <ul ref={resultsRef} className={`search-list ${open ? '' : 'hidden'}`}>
       {
         results.map((result) => {
           const { id, name, first_air_date, poster_path } = result;
@@ -55,6 +74,8 @@ function Search() {
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [formRef, setFormRef] = useState(null);
+  const [open, setOpen] = useState(true);
 
   const initialLocation = useRef(useLocation().pathname);
   let location = useLocation().pathname;
@@ -77,12 +98,21 @@ function Search() {
           setDebouncedQuery={setDebouncedQuery}
           setSearchResults={setSearchResults}
           setIsSearching={setIsSearching}
+          setFormRef={setFormRef}
+          setOpen={setOpen}
         />
       </div>
       <div className="search-results">
         <ContentWrapper>
           <div className="content">
-            {renderedResults(searchResults, isSearching, debouncedQuery)}
+            <RenderedResults
+              results={searchResults}
+              isSearching={isSearching}
+              query={debouncedQuery}
+              open={open}
+              setOpen={setOpen}
+              formRef={formRef}
+            />
           </div>
         </ContentWrapper>
       </div>
