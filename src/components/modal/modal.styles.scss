@@ -4,10 +4,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+
+  &.enter-done {
+    opacity: 1;
+    pointer-events: visible;
+  }
+
+  &.exit {
+    opacity: 0;
+  }
 
   &-content {
     width: 500px;

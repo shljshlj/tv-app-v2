@@ -50,8 +50,11 @@ function VideoPanel({ showId }) {
       </div>
       <Modal
         show={showModal}
-        setShow={setShowModal}
-      />
+        onClose={() => setShowModal(false)}
+        title='Playing video'
+      >
+        <p>This is modal body</p>
+      </Modal>
     </section>
   );
 }
