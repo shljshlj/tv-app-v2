@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useMount, usePromise } from 'react-use';
 import { showService } from '../../services/showService';
 import VideoCard from '../videoCard/videoCard.component';
+import Modal from '../modal/modal.component';
 
 import './videoPanel.styles.scss';
 
@@ -10,6 +11,7 @@ function VideoPanel({ showId }) {
   const [videos, setVideos] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useMount(() => {
     getVideos();
@@ -42,10 +44,14 @@ function VideoPanel({ showId }) {
       <div className="video_wrapper">
         {
           videos ?
-            videos.map((video) => <VideoCard key={video.videoId} video={video} />) :
+            videos.map((video) => <VideoCard key={video.videoId} video={video} setShowModal={setShowModal} />) :
             <div>No video available.</div>
         }
       </div>
+      <Modal
+        show={showModal}
+        setShow={setShowModal}
+      />
     </section>
   );
 }
