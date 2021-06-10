@@ -81,6 +81,15 @@ a {
   cursor: pointer;
 }
 
+button {
+  background-color: unset;
+  cursor: pointer;
+  color: inherit;
+  border: none;
+  font-size: unset;
+  font-family: inherit;
+}
+
 .link--yellow {
   color: var(--clr-link);
 }

@@ -222,7 +222,7 @@ class ShowService {
       console.error(err.message);
 
       return {
-        videos: null,
+        videos: [],
         error: err.message
       };
     }

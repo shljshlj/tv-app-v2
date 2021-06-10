@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-function VideoCard({ video, setShowModal }) {
+function VideoCard({ video, playVideoInModal }) {
   const imgUrl = video.getImgUrl();
   const { title, videoId } = video;
 
   return (
-    <div onClick={() => setShowModal(true)} className="video__card" style={{ backgroundImage: `url(${imgUrl})` }}>
-      <Link className="video__play" data-site="YouTube" data-video-id={videoId} data-title={title} to="#">
+    <div onClick={() => playVideoInModal(videoId, title)} className="video__card" style={{ backgroundImage: `url(${imgUrl})` }}>
+      <Link className="video__play" to={`#play=${videoId}`}>
         <div className="play-background">
           <span className="play-background__icon"></span>
         </div>

@@ -6,12 +6,28 @@ import Modal from '../modal/modal.component';
 
 import './videoPanel.styles.scss';
 
+const VideoModalContent = ({ videoId, videoTitle }) => {
+  const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  return (
+    <iframe
+      className="modal-player"
+      src={videoSrc}
+      frameBorder="0"
+      allow="autoplay; encrypted-media"
+      allowFullScreen
+      title={videoTitle}
+    />
+  );
+}
+
 function VideoPanel({ showId }) {
   const mounted = usePromise();
-  const [videos, setVideos] = useState(null);
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [playVideoId, setPlayVideoId] = useState(null);
+  const [playVideoTitle, setPlayVideoTitle] = useState(null);
 
   useMount(() => {
     getVideos();
@@ -25,6 +41,18 @@ function VideoPanel({ showId }) {
     setVideos(videos);
     setLoading(false);
   };
+
+  const playVideoInModal = (videoId, videoTitle) => {
+    setShowModal(true);
+    setPlayVideoId(videoId);
+    setPlayVideoTitle(videoTitle);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setPlayVideoId(null);
+    setPlayVideoTitle(null);
+  }
 
   if (loading) {
     return (
@@ -43,17 +71,22 @@ function VideoPanel({ showId }) {
       </div>
       <div className="video_wrapper">
         {
-          videos ?
-            videos.map((video) => <VideoCard key={video.videoId} video={video} setShowModal={setShowModal} />) :
+          videos.length !== 0 ?
+            videos.map((video) =>
+              <VideoCard
+                key={video.videoId}
+                video={video}
+                playVideoInModal={playVideoInModal}
+              />) :
             <div>No video available.</div>
         }
       </div>
       <Modal
         show={showModal}
-        onClose={() => setShowModal(false)}
-        title='Playing video'
+        onClose={closeModal}
+        title={playVideoTitle}
       >
-        <p>This is modal body</p>
+        <VideoModalContent videoId={playVideoId} videoTitle={playVideoTitle} />
       </Modal>
     </section>
   );

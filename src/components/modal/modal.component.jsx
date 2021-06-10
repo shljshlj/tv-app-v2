@@ -1,32 +1,35 @@
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
 import './modal.styles.scss';
 
 function Modal({ show, onClose, title, children }) {
+
   return ReactDOM.createPortal(
     <CSSTransition
       in={show}
       unmountOnExit
       timeout={{ enter: 0, exit: 300 }}
     >
-      <div
-        className="modal"
-        onClick={onClose}
-      >
-        <div
-          className="modal-content"
-          onClick={(e) => e.stopPropagation()}
-        >
+      <div className="modal">
+        <div className="modal-content">
           <div className="modal-header">
-            <h4>{title}</h4>
+            <h4 className="modal-header__title">{title}</h4>
+            <div className="modal-close">
+              <Link
+                to="#"
+                className="modal-close__button"
+                onClick={onClose}
+              >
+                <span className="modal-close__icon">
+                  <i className="fas fa-times"></i>
+                </span>
+              </Link>
+            </div>
           </div>
           <div className="modal-body">
             {children}
-          </div>
-          <div className="modal-footer">
-            <button onClick={onClose} className="modal-close-button">Close</button>
           </div>
         </div>
       </div>
