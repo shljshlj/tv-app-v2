@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useMount, usePromise, useLockBodyScroll, useToggle } from 'react-use';
 import { showService } from '../../services/showService';
 import VideoCard from '../videoCard/videoCard.component';

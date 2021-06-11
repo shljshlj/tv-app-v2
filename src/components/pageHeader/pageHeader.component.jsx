@@ -1,5 +1,8 @@
+import { useEffect, useRef } from 'react';
 import { useMedia } from 'react-use';
 import ContentWrapper from '../../components/layout/contentWrapper/contentWrapper.component';
+
+import { setLinearGradient } from '../../utils/generateLinearGradient';
 
 import './pageHeader.styles.scss';
 
@@ -19,14 +22,27 @@ function PageHeader({ showDetails }) {
     backgroundImage: bgImg
   };
 
+  const posterRef = useRef();
+  const gradientRef = useRef();
+
+  useEffect(() => {
+    posterRef.current.onload = () => setLinearGradient(posterRef.current, gradientRef.current);
+  }, []);
+
   return (
     <section className="page-header page-header--backdrop_poster" style={sectionStyle}>
-      <div className="page-header--linear_gradient">
+      <div ref={gradientRef} className="page-header--linear_gradient">
         <ContentWrapper>
           <div className="page-header_wrapper">
             <div className="poster_wrapper">
               <div className="poster">
-                <img loading="lazy" src={posterUrl} alt={`Poster for ${title} show`} />
+                <img
+                  ref={posterRef}
+                  crossOrigin="anonymous"
+                  loading="lazy"
+                  src={posterUrl}
+                  alt={`Poster for ${title} show`}
+                />
               </div>
             </div>
             <div className="overview">
