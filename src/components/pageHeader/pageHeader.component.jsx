@@ -1,10 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, forwardRef } from 'react';
 import { useMedia } from 'react-use';
 import ContentWrapper from '../../components/layout/contentWrapper/contentWrapper.component';
 
 import { setLinearGradient } from '../../utils/generateLinearGradient';
+import posterPlaceholder from '../../assets/poster_placeholder_tmdb.svg';
 
 import './pageHeader.styles.scss';
+
+const posterPlaceholderStyles = {
+  backgroundImage: `url(${posterPlaceholder})`
+};
+
+const Poster = forwardRef((props, ref) => (
+  <div className="poster">
+    <img
+      ref={ref}
+      crossOrigin="anonymous"
+      loading="lazy"
+      src={props.posterUrl}
+      alt={`Poster for ${props.title} show`}
+    />
+  </div>
+));
 
 function PageHeader({ showDetails }) {
   const { title, voteAverage, voteCount, overview, tagline, creators } = showDetails;
@@ -16,7 +33,7 @@ function PageHeader({ showDetails }) {
   const dateFormat = showDetails.getDateFormat();
 
   const isWide = useMedia('(min-width: 768px)');
-  const bgImg = isWide ? `url(${backdropUrl})` : null;
+  const bgImg = backdropUrl ? isWide ? `url(${backdropUrl})` : null : null;
 
   const sectionStyle = {
     backgroundImage: bgImg
@@ -26,8 +43,16 @@ function PageHeader({ showDetails }) {
   const gradientRef = useRef();
 
   useEffect(() => {
-    posterRef.current.onload = () => setLinearGradient(posterRef.current, gradientRef.current);
+    if (posterRef.current) {
+      posterRef.current.onload = () => setLinearGradient(posterRef.current, gradientRef.current);
+    }
   }, []);
+
+  const posterImg = () => {
+    return posterUrl ?
+      <Poster ref={posterRef} title={title} posterUrl={posterUrl} /> :
+      <div className="poster poster--placeholder" style={posterPlaceholderStyles}></div>
+  }
 
   return (
     <section className="page-header page-header--backdrop_poster" style={sectionStyle}>
@@ -35,15 +60,7 @@ function PageHeader({ showDetails }) {
         <ContentWrapper>
           <div className="page-header_wrapper">
             <div className="poster_wrapper">
-              <div className="poster">
-                <img
-                  ref={posterRef}
-                  crossOrigin="anonymous"
-                  loading="lazy"
-                  src={posterUrl}
-                  alt={`Poster for ${title} show`}
-                />
-              </div>
+              {posterImg()}
             </div>
             <div className="overview">
               <div className="title_wrapper">

@@ -94,6 +94,13 @@
     width: 100%;
     object-fit: contain;
   }
+
+  &--placeholder {
+    background-color: #e3e3e3;
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .rating {

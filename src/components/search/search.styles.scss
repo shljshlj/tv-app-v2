@@ -22,6 +22,10 @@
       padding-left: 30px;
       border: none;
       outline: none;
+      background-image: url(../../assets/search.svg);
+      background-size: 1.2rem;
+      background-repeat: no-repeat;
+      background-position: 0;
     }
   }
 }
@@ -38,7 +42,7 @@
 }
 
 .search-list {
-  background-color: rgba(253, 253, 253, 0.95);
+  background-color: var(--border-divider);
   border-radius: 4px;
 
   &.hidden {
@@ -48,7 +52,7 @@
   }
 
   li + li {
-    border-top: 1px solid var(--border-divider);
+    border-top: 1px solid var(--bg-light);
   }
 }
 
@@ -63,7 +67,7 @@
   &__poster {
     height: 70px;
     width: 45px;
-    background-color: var(--light-grey);
+    background-color: var(--primary-icon);
     margin-right: 1rem;
 
     img {

@@ -34,6 +34,3 @@ export const IMDB_URL = 'https://www.imdb.com/title/';
 export const FACEBOOK_URL = 'https://www.facebook.com/';
 export const INSTAGRAM_URL = 'https://www.instagram.com/';
 export const TWITTER_URL = 'https://twitter.com/';
-
-// YouTube
-const YOUTUBE_URL = 'https://www.youtube.com/watch?v=aDrsItJ_HU4';
