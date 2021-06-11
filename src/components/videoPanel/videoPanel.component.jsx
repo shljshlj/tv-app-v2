@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useMount, usePromise } from 'react-use';
+import { useState, useRef } from 'react';
+import { useMount, usePromise, useLockBodyScroll, useToggle } from 'react-use';
 import { showService } from '../../services/showService';
 import VideoCard from '../videoCard/videoCard.component';
 import Modal from '../modal/modal.component';
@@ -29,6 +29,9 @@ function VideoPanel({ showId }) {
   const [playVideoId, setPlayVideoId] = useState(null);
   const [playVideoTitle, setPlayVideoTitle] = useState(null);
 
+  const [locked, toggleLocked] = useToggle(false);
+  useLockBodyScroll(locked);
+
   useMount(() => {
     getVideos();
   })
@@ -44,12 +47,14 @@ function VideoPanel({ showId }) {
 
   const playVideoInModal = (videoId, videoTitle) => {
     setShowModal(true);
+    toggleLocked();
     setPlayVideoId(videoId);
     setPlayVideoTitle(videoTitle);
   };
 
   const closeModal = () => {
     setShowModal(false);
+    toggleLocked();
     setPlayVideoId(null);
     setPlayVideoTitle(null);
   }

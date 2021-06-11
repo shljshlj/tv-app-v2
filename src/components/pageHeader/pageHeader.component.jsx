@@ -1,3 +1,4 @@
+import { useMedia } from 'react-use';
 import ContentWrapper from '../../components/layout/contentWrapper/contentWrapper.component';
 
 import './pageHeader.styles.scss';
@@ -11,9 +12,12 @@ function PageHeader({ showDetails }) {
   const backdropUrl = showDetails.getBackdropUrl();
   const dateFormat = showDetails.getDateFormat();
 
+  const isWide = useMedia('(min-width: 768px)');
+  const bgImg = isWide ? `url(${backdropUrl})` : null;
+
   const sectionStyle = {
-    backgroundImage: `url(${backdropUrl})`
-  }
+    backgroundImage: bgImg
+  };
 
   return (
     <section className="page-header page-header--backdrop_poster" style={sectionStyle}>

@@ -1,13 +1,15 @@
 .single-page {
   &__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 260px;
-    grid-column-gap: 40px;
-    grid-template-areas:
-      'cast more-info'
-      'season more-info'
-      'video more-info'
-      'recommended more-info';
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      grid-column-gap: 40px;
+      grid-template-areas:
+        'cast more-info'
+        'season more-info'
+        'video more-info'
+        'recommended more-info';
+    }
   }
 }
 
@@ -52,5 +54,14 @@
       //   content: '\2014';
       // }
     }
+  }
+}
+
+.more-info {
+  margin-top: 3rem;
+
+  @media (min-width: 1024px) {
+    padding-top: unset;
+    grid-area: more-info;
   }
 }

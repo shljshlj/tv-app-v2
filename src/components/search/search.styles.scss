@@ -1,9 +1,13 @@
 .search {
   &-bar {
-    height: 44px;
+    height: 40px;
     background-color: var(--bg-light);
     border-bottom: 1px solid var(--light-grey);
     border-top: 1px solid var(--light-grey);
+
+    @media (min-width: 768px) {
+      height: 44px;
+    }
   }
 
   &-form {

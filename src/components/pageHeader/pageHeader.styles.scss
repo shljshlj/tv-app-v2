@@ -1,7 +1,6 @@
 .page-header {
   &--backdrop_poster {
     color: #fff;
-    // background-image: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg');
     background-position: right -200px top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,16 +17,24 @@
 
   &_wrapper {
     display: flex;
+    flex-direction: column;
     padding: 30px 0;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
   }
 }
 
 .overview {
-  margin-left: 40px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    margin-left: 40px;
+  }
 }
 
 .tagline {
@@ -38,10 +45,21 @@
 }
 
 .title {
-  font-size: 2.5em;
+  font-size: 2rem;
+  margin: 2rem 0 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+    margin: 0;
+  }
 
   &_wrapper {
     margin-bottom: 24px;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      text-align: left;
+    }
   }
 
   &__divider {
@@ -50,18 +68,31 @@
 }
 
 .poster_wrapper {
-  width: 300px;
-  // height: auto;
-  min-height: 450px;
-  overflow: hidden;
-  border-radius: var(--card-border-radius);
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 }
 
-.poster img {
-  display: block;
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
+.poster {
+  width: 200px;
+  min-height: 250px;
+  overflow: hidden;
+  border-radius: var(--card-border-radius);
+
+  @media (min-width: 768px) {
+    width: 300px;
+    min-height: 450px;
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
 }
 
 .rating {
@@ -85,6 +116,7 @@
   margin-bottom: 20px;
 
   h3 {
+    font-size: 1.3rem;
     margin: 10px 0 8px;
   }
 }

@@ -212,7 +212,7 @@ class ShowService {
     try {
       const { data } = await tvApi.get(endpoint, options);
 
-      const videoList = data.results.length !== 0 ? data.results.map(video => new Video(video)) : null;
+      const videoList = data.results.length !== 0 ? data.results.map(video => new Video(video)) : [];
 
       return {
         videos: videoList,
