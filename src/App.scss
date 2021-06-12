@@ -40,18 +40,15 @@
 }
 
 :root {
-  --bg-dark: #121212;
-  --bg-light: #fdfdfd;
-  --light-grey: #e3e3e3;
-  --primary-text: #050505;
-  --secondary-text: #f1f1f1;
-  --primary-icon: #7e7e7e;
-  --border-divider: #d7d7d7;
+  --black-100: rgba(0, 0, 0, 0.1);
+  --black-900: #121212;
+  --white: #ffffff;
+  --grey-100: #fdfdfd;
+  --grey-200: #e3e3e3;
+  --grey-300: #d7d7d7;
+  --grey-400: #7e7e7e;
+  --yellow-imdb: #f5c518;
   --card-border-radius: 6px;
-  --card-border-color: #e3e3e3;
-  --card-box-shadow-color: rgba(0, 0, 0, 0.1);
-  --gold-rating: #e4bb24;
-  --clr-link: #b38c00;
   --font-primary: 'Source Sans Pro', sans-serif;
   --font-secondary: 'Roboto Condensed', sans-serif;
 }
@@ -91,7 +88,7 @@ button {
 }
 
 .link--yellow {
-  color: var(--clr-link);
+  color: var(--yellow-imdb);
 }
 
 .visually-hidden {
@@ -103,31 +100,6 @@ button {
   white-space: nowrap;
   position: absolute;
 }
-
-/* -----
-SVG Icons - svgicons.sparkk.fr SET #1
------ */
-
-// .svg-icon {
-//   width: 1em;
-//   height: 1em;
-// }
-
-// .svg-icon path,
-// .svg-icon polygon,
-// .svg-icon rect {
-//   fill: var(--primary-icon);
-// }
-
-// .svg-icon circle {
-//   stroke: var(--primary-icon);
-//   stroke-width: 1;
-// }
-
-/* -----
-SVG Icons - END
------ */
-
 
 /* Icons */
 

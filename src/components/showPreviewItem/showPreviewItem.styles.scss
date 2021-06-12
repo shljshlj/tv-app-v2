@@ -1,7 +1,7 @@
 .grid__card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #e3e3e3;
+  border: 1px solid var(--grey-200);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

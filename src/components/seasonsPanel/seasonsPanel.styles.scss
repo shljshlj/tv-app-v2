@@ -10,9 +10,9 @@
   &__card {
     display: flex;
     margin-bottom: 10px;
-    border: 1px solid var(--card-border-color);
+    border: 1px solid var(--grey-200);
     border-radius: var(--card-border-radius);
-    box-shadow: 0 2px 8px var(--card-box-shadow-color);
+    box-shadow: 0 2px 8px var(--black-100);
     overflow: hidden;
 
     &:last-of-type {
@@ -34,7 +34,7 @@
       }
 
       &.placeholder {
-        background-color: var(--light-grey);
+        background-color: var(--grey-200);
         background-size: 50%;
         background-position: center;
         background-repeat: no-repeat;
@@ -72,7 +72,7 @@
   &--more {
     display: inline-block;
     margin-top: 4px;
-    color: var(--bg-dark);
+    color: var(--black-900);
     font-weight: 600;
 
     &::after {

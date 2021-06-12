@@ -23,12 +23,12 @@
 
     &:not(.links--social) {
       padding-left: 14px;
-      border-left: 1px solid #d7d7d7;
+      border-left: 1px solid var(--grey-200);
     }
 
     &:first-child {
       border-left: none !important;
-      padding-left: none !important;
+      padding-left: 0 !important;
     }
 
   }
@@ -69,7 +69,7 @@
     margin-bottom: 10px;
 
     background-color: rgba(0, 0, 0, .1);
-    border: 1px solid #d7d7d7;
+    border: 1px solid var(--grey-300);
     border-radius: 4px;
     cursor: default;
   }

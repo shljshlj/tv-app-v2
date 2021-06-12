@@ -8,7 +8,7 @@
 
   &--linear_gradient {
     height: 100%;
-    background-color: var(--bg-dark);
+    background-color: var(--black-900);
 
     @media (min-width: 768px) {
       background-color: unset;
@@ -96,7 +96,7 @@
   }
 
   &--placeholder {
-    background-color: #e3e3e3;
+    background-color: var(--grey-200);
     background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;

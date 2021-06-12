@@ -22,7 +22,7 @@ function darkestColorsFromPalette(palette) {
 }
 
 function linearGradient(clr1, clr2) {
-  return `linear-gradient(to right, ${clr1} 150px, ${clr2} 100%)`;
+  return `linear-gradient(to right, ${clr1} 200px, ${clr2} 100%)`;
 }
 
 function setLinearGradient(img, elemToAddGradient) {
