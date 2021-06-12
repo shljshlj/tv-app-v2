@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useMount, usePromise } from 'react-use';
+import { useEffect, useState } from 'react';
+import { usePromise } from 'react-use';
 import { showService } from '../../services/showService';
 
 import ShowPreviewItem from '../showPreviewItem/showPreviewItem.component';
@@ -16,17 +16,18 @@ function ShowPreviewList({ type, numOfShows, className, isPaginated }) {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useMount(() => {
+  useEffect(() => {
+    const getShows = async () => {
+      setLoading(true);
+      const fetchedShows = await mounted(fetchShows[type](numOfShows));
+
+      setShows(fetchedShows);
+      setLoading(false);
+    }
+
     getShows(type);
-  })
+  }, [mounted, type, numOfShows])
 
-  const getShows = async () => {
-    setLoading(true);
-    const fetchedShows = await mounted(fetchShows[type](numOfShows));
-
-    setShows(fetchedShows);
-    setLoading(false);
-  }
 
   if (loading) {
     return <p>Loading...</p>
