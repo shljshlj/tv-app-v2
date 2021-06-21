@@ -11,6 +11,8 @@ import VideoPanel from '../../components/videoPanel/videoPanel.component';
 import RecommendedPanel from '../../components/recommendedPanel/recommendedPanel.component';
 import MoreInfoPanel from '../../components/moreInfoPanel/moreInfoPanel.component';
 
+import './show.styles.scss';
+
 function ShowPage() {
   const { showId } = useParams();
   const [showDetails, setShowDetails] = useState(null);
@@ -28,7 +30,7 @@ function ShowPage() {
   }, [showId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading-show">Loading...</div>;
   }
 
   return (
@@ -40,7 +42,7 @@ function ShowPage() {
             <ContentWrapper>
               <SingleShowGrid>
                 {/*
-                  This components have problem with unmounting and updating the state
+                  These components have problem with unmounting and updating the state
                   only if they are nested like this,
                   but not if they are on the same level with the PageHeader component (?)
                 */}

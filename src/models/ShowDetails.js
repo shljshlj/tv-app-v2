@@ -120,6 +120,7 @@ export default class ShowDetails {
   getCountryOfOrigin() {
     if (this.originCountry.length === 0) return '-';
 
-    return this.originCountry.map(country => findCountryName(country));
+    const listOfCountries = this.originCountry.map(country => findCountryName(country));
+    return listOfCountries.join(', ');
   }
 };
