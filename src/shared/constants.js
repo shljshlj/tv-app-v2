@@ -8,6 +8,7 @@ export const BASE_API_ENDPOINT = 'https://api.themoviedb.org/3';
 export const TV_ENDPOINT = BASE_API_ENDPOINT + '/tv';
 export const PERSON_ENDPOINT = BASE_API_ENDPOINT + '/person';
 export const SEARCH_ENDPOINT = BASE_API_ENDPOINT + '/search';
+export const DISCOVER_ENDPOINT = BASE_API_ENDPOINT + '/discover';
 
 // Poster images
 export const POSTER_PATH_XS = imageConfiguration.images.secure_base_url + imageConfiguration.images.poster_sizes[0];

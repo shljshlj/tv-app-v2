@@ -1,6 +1,5 @@
 import { API_KEY } from '../shared/constants';
-import { searchApi, tvApi } from '../shared/api';
-import { personApi } from '../shared/api';
+import { searchApi, tvApi, personApi, discoverApi } from '../shared/api';
 import { genreService } from './genreService';
 
 import PreviewItem from '../models/PreviewItem';
@@ -13,7 +12,28 @@ import Video from '../models/Video';
 
 class ShowService {
   fetchPopular = this.fetchShows('/popular');
-  fetchTopRated = this.fetchShows('/top_rated');
+  // fetchTopRated = this.fetchShows('/top_rated');
+  fetchTopRated = this.fetchTopRated2('/tv');
+
+  fetchTopRated2(endpoint = '/tv') {
+    return async (numOfShows = 20, page = 1, language = 'en-US') => {
+      const options = {
+        params: {
+          page,
+          language,
+          'sort_by': 'vote_average.desc',
+          'vote_count.gte': 1500,
+          api_key: API_KEY
+        },
+      };
+
+      const { data } = await discoverApi.get(endpoint, options);
+      const fetchedShows = data.results.slice(0, numOfShows);
+      const showPreviews = await this.createShowPreviews(fetchedShows);
+
+      return showPreviews;
+    }
+  }
 
   fetchShows(endpoint) {
     return async (numOfShows = 20, page = 1, language = 'en-US') => {

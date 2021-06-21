@@ -14,16 +14,19 @@ function SeasonPanel({ title, seasons }) {
         <h3>Seasons</h3>
       </div>
       <div className="season_wrapper">
-        <ol className="season__list">
-          {
-            seasonsList.map((season) => {
-              const posterUrl = season.getPosterUrl();
-              const releaseYear = season.getReleaseYear();
+        {seasons.lenght > 0 ?
+          <ol className="season__list">
+            {
+              seasonsList.map((season) => {
+                const posterUrl = season.getPosterUrl();
+                const releaseYear = season.getReleaseYear();
 
-              return <SeasonCard key={season.id} season={season} posterUrl={posterUrl} releaseYear={releaseYear} showTitle={title} />
-            })
-          }
-        </ol>
+                return <SeasonCard key={season.id} season={season} posterUrl={posterUrl} releaseYear={releaseYear} showTitle={title} />
+              })
+            }
+          </ol> :
+          'No seasons info.'
+        }
         {
           seasons.length > 4 ?
             <Link className="link--more" to="#">Show More Seasons</Link> :

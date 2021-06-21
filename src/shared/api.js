@@ -3,7 +3,8 @@ import {
   BASE_API_ENDPOINT,
   TV_ENDPOINT,
   PERSON_ENDPOINT,
-  SEARCH_ENDPOINT
+  SEARCH_ENDPOINT,
+  DISCOVER_ENDPOINT
 } from './constants';
 
 
@@ -30,6 +31,13 @@ export const personApi = axios.create({
 
 export const searchApi = axios.create({
   baseURL: SEARCH_ENDPOINT,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+export const discoverApi = axios.create({
+  baseURL: DISCOVER_ENDPOINT,
   headers: {
     'Content-Type': 'application/json'
   }

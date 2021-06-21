@@ -8,6 +8,7 @@ import './showPreviewList.styles.scss';
 
 const fetchShows = {
   POPULAR: showService.fetchPopular,
+  // TOP_RATED: showService.fetchTopRated
   TOP_RATED: showService.fetchTopRated
 };
 

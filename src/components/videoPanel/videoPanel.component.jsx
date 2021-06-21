@@ -83,7 +83,7 @@ function VideoPanel({ showId }) {
                 video={video}
                 playVideoInModal={playVideoInModal}
               />) :
-            <div>No video available.</div>
+            <div>No videos available.</div>
         }
       </div>
       <Modal

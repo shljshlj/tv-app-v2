@@ -28,7 +28,7 @@ export default class ShowDetails {
   ) {
     this.showId = id;
     this.title = name;
-    this.episodeRuntime = episode_run_time[0];
+    this.episodeRuntime = episode_run_time.length > 0 ? `${episode_run_time[0]} min` : '-';
     this.genres = genres;
     this.firstAirDate = first_air_date;
     this.lastAirDate = last_air_date;
@@ -49,10 +49,12 @@ export default class ShowDetails {
 
   getGenreString() {
     let genreString = '';
-    for (let i = 0; i < this.genres.length; i++) {
-      if (i === this.genres.length - 1) genreString += this.genres[i].name;
-      else genreString += this.genres[i].name + ', ';
-    }
+    if (this.genres.length > 0) {
+      for (let i = 0; i < this.genres.length; i++) {
+        if (i === this.genres.length - 1) genreString += this.genres[i].name;
+        else genreString += this.genres[i].name + ', ';
+      }
+    } else genreString = '-'
 
     return genreString;
   }
@@ -61,7 +63,7 @@ export default class ShowDetails {
     if (this.firstAirDate) {
       const releaseYear = new Date(this.firstAirDate).getFullYear();
 
-      if (this.status === 'Ended' && this.lastAirDate) {
+      if ((this.status === 'Ended' || this.status === 'Canceled') && this.lastAirDate) {
         const lastAirDateYear = new Date(this.lastAirDate).getFullYear();
         return `(${releaseYear}${String.fromCharCode(8211)}${lastAirDateYear})`;
       }
@@ -78,18 +80,20 @@ export default class ShowDetails {
         day: "numeric"
       });
     }
-    return this.firstAirDate;
+    return '-';
   }
 
   getCreatorString() {
-    let creatorString = '';
-
-    for (let i = 0; i < this.creators.length; i++) {
-      if (i === this.creators.length - 1) creatorString += this.creators[i];
-      else creatorString += this.creators[i] + ', ';
+    if (this.creators.length > 0) {
+      let creatorString = '';
+      for (let i = 0; i < this.creators.length; i++) {
+        if (i === this.creators.length - 1) creatorString += this.creators[i];
+        else creatorString += this.creators[i] + ', ';
+      }
+      return creatorString;
     }
 
-    return creatorString;
+    return null;
   }
 
   getBackdropUrl() {
@@ -109,12 +113,12 @@ export default class ShowDetails {
   }
 
   getOriginalLanguageFull() {
-    if (!this.originalLanguage) return null;
+    if (!this.originalLanguage) return '-';
     return findLanguageName(this.originalLanguage);
   }
 
   getCountryOfOrigin() {
-    if (this.originCountry.length === 0) return null;
+    if (this.originCountry.length === 0) return '-';
 
     return this.originCountry.map(country => findCountryName(country));
   }

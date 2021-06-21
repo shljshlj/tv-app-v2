@@ -25,7 +25,7 @@ const Poster = forwardRef((props, ref) => (
 
 function PageHeader({ showDetails }) {
   const { title, voteAverage, voteCount, overview, tagline, creators } = showDetails;
-  const runtime = showDetails.episodeRuntime + 'min';
+  const runtime = showDetails.episodeRuntime;
   const genreString = showDetails.getGenreString();
   const creatorString = showDetails.getCreatorString();
   const posterUrl = showDetails.getPosterUrl();
@@ -35,9 +35,13 @@ function PageHeader({ showDetails }) {
   const isWide = useMedia('(min-width: 768px)');
   const bgImg = backdropUrl ? isWide ? `url(${backdropUrl})` : null : null;
 
-  const sectionStyle = {
-    backgroundImage: bgImg
-  };
+  const sectionStyle = bgImg ?
+    {
+      backgroundImage: bgImg
+    } :
+    {
+      backgroundColor: '#121212'
+    };
 
   const posterRef = useRef();
   const gradientRef = useRef();
@@ -85,12 +89,14 @@ function PageHeader({ showDetails }) {
               {tagline && <p className="tagline">{tagline}</p>}
               <div className="summary">
                 <h3>Overview</h3>
-                <p>{overview}</p>
+                <p>{overview || 'There is no overview provided for this show.'}</p>
               </div>
-              <div className="creators">
-                <h4>{creators.length > 1 ? 'Creators:' : 'Creator:'}</h4>
-                <span>{creatorString}</span>
-              </div>
+              {creatorString &&
+                <div className="creators">
+                  <h4>{creators.length > 1 ? 'Creators:' : 'Creator:'}</h4>
+                  <span>{creatorString}</span>
+                </div>
+              }
             </div>
           </div>
         </ContentWrapper>
