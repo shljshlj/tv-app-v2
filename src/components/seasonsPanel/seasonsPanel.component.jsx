@@ -14,7 +14,7 @@ function SeasonPanel({ title, seasons }) {
         <h3>Seasons</h3>
       </div>
       <div className="season_wrapper">
-        {seasons.lenght > 0 ?
+        {seasons.length > 0 ?
           <ol className="season__list">
             {
               seasonsList.map((season) => {
