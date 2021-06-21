@@ -8,14 +8,20 @@ function ShowPreviewItem({ show }) {
   const releaseYear = show.getReleaseYear();
   const genres = show.getGenresFormat();
 
+  const posterStyle = {
+    '--aspect-ratio': 2 / 3
+  };
+
   return (
     <li className="grid__card card">
       <div className="grid__card-poster">
         <Link to={`/show/${id}`}>
-          <img
-            alt="movie poster"
-            src={posterUrl}
-          />
+          <div className="poster-container" style={posterStyle}>
+            <img
+              alt="movie poster"
+              src={posterUrl}
+            />
+          </div>
         </Link>
       </div>
       <div className="grid__card-content">

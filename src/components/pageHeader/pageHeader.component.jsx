@@ -7,21 +7,38 @@ import posterPlaceholder from '../../assets/poster_placeholder_tmdb.svg';
 
 import './pageHeader.styles.scss';
 
-const posterPlaceholderStyles = {
-  backgroundImage: `url(${posterPlaceholder})`
-};
 
-const Poster = forwardRef((props, ref) => (
-  <div className="poster">
-    <img
-      ref={ref}
-      crossOrigin="anonymous"
-      loading="lazy"
-      src={props.posterUrl}
-      alt={`Poster for ${props.title} show`}
-    />
-  </div>
-));
+const Poster = forwardRef((props, ref) => {
+  const posterStyle = {
+    '--aspect-ratio': 2 / 3
+  };
+
+  return (
+    <div className="poster">
+      <div className="poster-container" style={posterStyle}>
+        <img
+          ref={ref}
+          crossOrigin="anonymous"
+          loading="lazy"
+          src={props.posterUrl}
+          alt={`Poster for ${props.title} show`}
+        />
+      </div>
+    </div>
+  );
+});
+
+const PosterPlaceholder = () => {
+  const posterPlaceholderStyles = {
+    backgroundImage: `url(${posterPlaceholder})`
+  };
+
+  return (
+    <div className="poster" style={{ '--aspect-ratio': 2 / 3 }}>
+      <div className="poster--placeholder" style={posterPlaceholderStyles}></div>
+    </div>
+  );
+};
 
 function PageHeader({ showDetails }) {
   const { title, voteAverage, voteCount, overview, tagline, creators } = showDetails;
@@ -55,8 +72,8 @@ function PageHeader({ showDetails }) {
   const posterImg = () => {
     return posterUrl ?
       <Poster ref={posterRef} title={title} posterUrl={posterUrl} /> :
-      <div className="poster poster--placeholder" style={posterPlaceholderStyles}></div>
-  }
+      <PosterPlaceholder />
+  };
 
   return (
     <section className="page-header page-header--backdrop_poster" style={sectionStyle}>
